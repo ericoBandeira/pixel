@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -27,14 +28,23 @@ const Home: NextPage = () => {
         value={password}
         onChange={(e)=>setPassword(e.target.value)}
       />
-
-      <Link href={(login==='teste1' && password === '123456')?"/pixelname":'/'}>
+      {(login !== 'teste1' && password !== '123456') ?
         <button 
           className={styles.button}
+          onClick={()=>toast.error("Usuário ou senha inválido")}
         >
           Entrar
         </button>
-      </Link>
+        
+        :
+        <Link href="/pixelname">
+          <button 
+            className={styles.button}
+          >
+            Entrar
+          </button>
+        </Link>}
+        <Toaster />
     </div>
   )
 }

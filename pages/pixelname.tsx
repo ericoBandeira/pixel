@@ -1,5 +1,7 @@
 import type { NextPage } from 'next'
+import Link from 'next/link'
 import { useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 import styles from '../styles/PixelName.module.css'
 
 const Home: NextPage = () => {
@@ -19,14 +21,26 @@ const Home: NextPage = () => {
                 type="email"
                 value={pixelName}
                 onChange={(e)=>setPixelName(e.target.value)}
-              />
+            />
               
-              <button
+            {(pixelName ==="") ?
+            <button 
+            className={styles.button}
+            onClick={()=>toast.error("Por favor, digite um nome válido")}
+            >
+                Próximo passo
+            </button>
+            
+            :
+            <Link href="/pixelbody">
+            <button 
                 className={styles.button}
-                onClick={() => {}}
-              >
-                  Próximo passo
-              </button>
+            >
+                Próximo passo
+            </button>
+            </Link>}
+            <Toaster/>
+
         </div>
         <div className={styles.pixel}>
               <div className={styles.pixelBody}>
