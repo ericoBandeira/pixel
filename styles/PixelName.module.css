@@ -1,0 +1,106 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.data{
+    display: flex;
+    flex-direction: column;
+    background-color: #86ACC1;
+    align-items: center;
+    justify-content: center;
+}
+
+.pixel{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputTitle{
+    padding: 3rem 1rem;
+
+    font-family: Roboto Mono;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 46px;
+
+    color: #FFFFFF;
+}
+
+.input{
+    background: #FFFFFF;
+    border-radius: 15px;
+    min-width: 20rem;
+    padding: 1.2rem 1rem;
+    margin-bottom: 1rem;
+    border: none;
+
+    font-family: Roboto Mono;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.button{
+    margin-top: 5rem;
+    cursor: pointer;
+    font-family: Roboto Mono;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 53px;
+    color: #FFFFFF;
+
+    min-width: 20rem;
+    background: #63879A;
+    border-radius: 15px;
+    border: none;
+    transition: 0.4s;
+}
+
+.button:hover{
+    opacity: 0.8;
+}   
+
+.pixelBody{
+    background: #00F3F3;
+    border: 3px solid #000000;
+    box-sizing: border-box;
+    width: 22rem;
+    height: 22rem;
+}
+.pixelBody > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.pixelEye{
+    margin-top: 4rem;
+    background: #FFF;
+    border: 3px solid #000000;
+    box-sizing: border-box;
+    width: 5rem;
+    height: 5rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.pixelPupil{
+    background: #000000;
+    border: 3px solid #000000;
+    box-sizing: border-box;
+    width: 2em;
+    height: 2em;
+}
+
+.mouth{
+    margin-top: 3rem;
+}

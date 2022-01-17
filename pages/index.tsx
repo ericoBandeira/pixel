@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Link from 'next/link'
 import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 
@@ -27,15 +28,13 @@ const Home: NextPage = () => {
         onChange={(e)=>setPassword(e.target.value)}
       />
 
-      <button 
-        className={styles.button}
-        onClick={() => {
-          console.log(login);
-          console.log(password);
-        }}
-      >
-        Entrar
-      </button>
+      <Link href={(login==='teste1' && password === '123456')?"/pixelname":'/'}>
+        <button 
+          className={styles.button}
+        >
+          Entrar
+        </button>
+      </Link>
     </div>
   )
 }
