@@ -1,13 +1,25 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
 import styles from '../styles/PixelBody.module.css'
-import { ChromePicker } from 'react-color'
+import { GithubPicker } from 'react-color'
+import Link from 'next/link'
 
 const Home: NextPage = () => {
 
   const [square, setSquare] = useState(true)
   const [circle, setCircle] = useState(false)
-  const [color, setColor] = useState(false)
+  const [color, setColor] = useState('')
+
+  const [openColorButtom, setOpenColorButton] = useState(false)
+
+
+  function handleOpenButton() {
+    setOpenColorButton(!openColorButtom)
+  }
+
+  function handlaCloseButton() {
+    setOpenColorButton(false)
+  }
 
   return (
     <div className={styles.container}>
@@ -22,12 +34,12 @@ const Home: NextPage = () => {
                   </div>
             <div className={styles.radioInput}>
               <label className={styles.labelText}>
-              <input onChange={() => { setSquare(true); setCircle(false);}} type="radio" value="Square" name="eye" />
+              <input onChange={() => { setSquare(true); setCircle(false); }} type="radio" value="Square" name="eye" checked={square}/>
                 Quadrados
               </label>
                       
               <label className={styles.labelText}>
-                <input onChange={() => { setSquare(false); setCircle(true);}}  type="radio" value="Circle" name="eye" />
+              <input onChange={() => { setSquare(false); setCircle(true);}}  type="radio" value="Circle" name="eye" checked={circle} />
                 Redondos
               </label>
           </div>
@@ -35,30 +47,41 @@ const Home: NextPage = () => {
           <div className={styles.inputTitle1} style={{marginTop: "1rem"}}>
                   Cor do seu pixel:    
           </div>
-          <button
-            className={styles.buttonColor}
-
-          />
-
+              <div style={{margin: 0}}>
+                <button
+                  className={styles.buttonColor}
+              onClick={handleOpenButton}
+              style={{backgroundColor:color}}
+              />
+              {openColorButtom ? <div className={styles.popover}>
+              <div className={ styles.cover } onClick={ handlaCloseButton }/>
+              <GithubPicker onChange={(e)=>{setColor(e.hex)}}/>
+             </div> : null }
+              <div>
+              </div>
             </div>
+
+          </div>
               
 
-              
+          <Link href="/pixellife">
             <button
             className={styles.button}
             onClick={() => {}}
             >
                 Finalizar
-            </button>
+          </button>
+          </Link>
         </div>
         <div className={styles.pixel}>
-              <div className={styles.pixelBody}>
+              <div className={styles.pixelBody} 
+              style={{backgroundColor:color}}>
                 <div>
-                    <div className={styles.pixelEye} style={circle?{borderRadius:"50%"}:{}}>
-                        <div className={styles.pixelPupil} style={circle?{borderRadius:"50%"}:{}}/>
+                    <div className={styles.pixelEye} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}>
+                        <div className={styles.pixelPupil} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}/>
                     </div>
-                    <div className={styles.pixelEye} style={circle?{borderRadius:"50%"}:{}}>
-                        <div className={styles.pixelPupil} style={circle?{borderRadius:"50%"}:{}}/>
+                    <div className={styles.pixelEye} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}>
+                        <div className={styles.pixelPupil} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}/>
                     </div>
                   </div>
                   <div className={styles.mouth}>
