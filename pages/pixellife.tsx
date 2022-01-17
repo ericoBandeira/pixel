@@ -1,14 +1,18 @@
 import type { NextPage } from 'next'
-import { useState } from 'react'
+import { useContext } from 'react'
+import { AppContext } from '../context/contextapi'
 import styles from '../styles/PixelLife.module.css'
 
 const Home: NextPage = () => {
+
+
+  const {pixelName, circle, color} = useContext(AppContext)
 
   return (
     <div className={styles.container}>
         <div className={styles.data}>
             <div className={styles.inputTitle}>
-                Seu Pixel: Jorge
+                Seu Pixel: {pixelName}
             </div>
             <div className={styles.inputTitle1}>
                Fome (acessibilidade):
@@ -50,13 +54,14 @@ const Home: NextPage = () => {
 
         </div>
         <div className={styles.pixel}>
-              <div className={styles.pixelBody}>
+            <div className={styles.pixelBody} 
+              style={{backgroundColor:color}}>
                 <div>
-                    <div className={styles.pixelEye}>
-                        <div className={styles.pixelPupil}/>
+                    <div className={styles.pixelEye} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}>
+                        <div className={styles.pixelPupil} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}/>
                     </div>
-                    <div className={styles.pixelEye}>
-                        <div className={styles.pixelPupil}/>
+                    <div className={styles.pixelEye} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}>
+                        <div className={styles.pixelPupil} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}/>
                     </div>
                   </div>
                   <div className={styles.mouth}>

@@ -1,16 +1,15 @@
 import type { NextPage } from 'next'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import styles from '../styles/PixelBody.module.css'
 import { GithubPicker } from 'react-color'
 import Link from 'next/link'
+import { AppContext } from '../context/contextapi'
 
 const Home: NextPage = () => {
 
-  const [square, setSquare] = useState(true)
-  const [circle, setCircle] = useState(false)
-  const [color, setColor] = useState('')
-
   const [openColorButtom, setOpenColorButton] = useState(false)
+
+  const {square, setSquare, circle, setCircle, color, setColor} = useContext(AppContext)
 
 
   function handleOpenButton() {

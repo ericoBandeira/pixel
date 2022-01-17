@@ -1,12 +1,13 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+import { AppContext } from '../context/contextapi'
 import styles from '../styles/PixelName.module.css'
 
 const Home: NextPage = () => {
 
-    const [pixelName, setPixelName] = useState('')
+    const {pixelName, setPixelName} = useContext(AppContext)
 
   return (
     <div className={styles.container}>
