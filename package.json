@@ -1,5 +1,10 @@
 {
   "name": "pixel",
+  "description": "a really cool app",
+  "version": "0.0.1",
+  "engines": {
+    "yarn": "1.22.11"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
