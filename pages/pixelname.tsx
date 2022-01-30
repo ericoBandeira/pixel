@@ -12,6 +12,14 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
         <div className={styles.data}>
+          <Link href="/">
+            <div className={styles.backButton}>
+              <svg width="15" height="22" viewBox="0 0 15 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="13.0607" y1="1.06066" x2="4.06066" y2="10.0607" stroke="white" stroke-width="3"/>
+              <line x1="11.9393" y1="20.0607" x2="1.93934" y2="10.0607" stroke="white" stroke-width="3"/>
+              </svg>
+            </div>
+            </Link>
             <div className={styles.inputTitle}>
                 Qual o nome do seu Pixel?
             </div>

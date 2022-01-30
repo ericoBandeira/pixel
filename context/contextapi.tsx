@@ -16,7 +16,9 @@ interface RoutesContextData {
     consistencia: number
     eficiencia: number
     minimalismo: number
-    prevencao: number
+    prevencao: number,
+    firstAccess: boolean
+    setFirstAccess: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface AppProviderProps {
@@ -31,6 +33,7 @@ export function AppProvider({ children }: AppProviderProps) {
   const [square, setSquare] = useState(true)
   const [circle, setCircle] = useState(false)
   const [color, setColor] = useState('')
+  const [firstAccess, setFirstAccess] = useState(true)
   
   const visibilidade = 5;
   const correspondencia = 3;
@@ -59,7 +62,9 @@ export function AppProvider({ children }: AppProviderProps) {
             consistencia,
             eficiencia,
             minimalismo,
-            prevencao
+            prevencao,
+            firstAccess,
+            setFirstAccess
         }}
     >
       {children}

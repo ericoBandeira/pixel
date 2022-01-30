@@ -45,6 +45,29 @@
     font-size: 1rem;
 }
 
+.CancelButton{
+    margin-top: 5rem;
+    cursor: pointer;
+    font-family: Roboto Mono;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 53px;
+    color: #FFFFFF;
+
+    min-width: 20rem;
+    background: #E52C2C;
+    border-radius: 15px;
+    border: none;
+    transition: 0.4s;
+
+}
+
+
+.CancelButton:hover{
+    opacity: 0.8;
+}   
+
 .button{
     margin-top: 5rem;
     cursor: pointer;
@@ -156,4 +179,42 @@
     width: 2rem;
     height: 2rem;
     border: 1px solid #000;
+}
+
+.modal{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    border-radius: 15px;
+    border: 1px solid gray;
+    margin-top: 30vh;
+    margin-left: 20vw;
+    max-width: 50rem;
+}
+
+.modal > span{
+
+    font-family: Roboto Mono;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 46px;
+
+    color: #000;
+
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.buttonDiv{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2rem;
+}
+
+.backButton{
+    cursor: pointer;
+    width: 90%;
+    justify-content: left;
 }

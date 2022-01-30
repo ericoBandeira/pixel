@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Link from 'next/link'
 import { useContext } from 'react'
 import { AppContext } from '../context/contextapi'
 import styles from '../styles/PixelLife.module.css'
@@ -22,10 +23,16 @@ const Home: NextPage = () => {
 
   const media = (visibilidade + correspondencia + controle + reconhecimento + consistencia + eficiencia + minimalismo + prevencao)/8
   
+  const maxLife = 6
 
   return (
     <div className={styles.container}>
-        <div className={styles.data}>
+      <div className={styles.data}>
+            <Link href="/">
+              <button className={styles.logoutDiv} >
+                Logout
+              </button>
+            </Link>
             <div className={styles.inputTitle}>
                 Seu Pixel: {pixelName}
             </div>
@@ -36,7 +43,7 @@ const Home: NextPage = () => {
              {Array.from(Array(visibilidade), () => {
                 return <div className={styles.star} style={{backgroundColor: "yellow"}}/>
              })}
-            {Array.from(Array(6-visibilidade), () => {
+            {Array.from(Array(maxLife-visibilidade), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
             </div>
@@ -47,7 +54,7 @@ const Home: NextPage = () => {
               {Array.from(Array(correspondencia), () => {
                 return <div className={styles.star} style={{backgroundColor: "yellow"}}/>
              })}
-            {Array.from(Array(6-correspondencia), () => {
+            {Array.from(Array(maxLife-correspondencia), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
             </div>
@@ -58,7 +65,7 @@ const Home: NextPage = () => {
               {Array.from(Array(controle), () => {
                 return <div className={styles.star} style={{backgroundColor: "yellow"}}/>
              })}
-            {Array.from(Array(6-controle), () => {
+            {Array.from(Array(maxLife-controle), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
             </div>
@@ -69,7 +76,7 @@ const Home: NextPage = () => {
               {Array.from(Array(consistencia), () => {
                 return <div className={styles.star} style={{backgroundColor: "yellow"}}/>
              })}
-            {Array.from(Array(6-consistencia), () => {
+            {Array.from(Array(maxLife-consistencia), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
             </div>
@@ -80,7 +87,7 @@ const Home: NextPage = () => {
               {Array.from(Array(reconhecimento), () => {
                 return <div className={styles.star} style={{backgroundColor: "yellow"}}/>
              })}
-            {Array.from(Array(6-reconhecimento), () => {
+            {Array.from(Array(maxLife-reconhecimento), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
             </div>
@@ -91,7 +98,7 @@ const Home: NextPage = () => {
               {Array.from(Array(eficiencia), () => {
                 return <div className={styles.star} style={{backgroundColor: "yellow"}}/>
              })}
-            {Array.from(Array(6-eficiencia), () => {
+            {Array.from(Array(maxLife-eficiencia), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
             </div>
@@ -102,7 +109,7 @@ const Home: NextPage = () => {
               {Array.from(Array(minimalismo), () => {
                 return <div className={styles.star} style={{backgroundColor: "yellow"}}/>
              })}
-            {Array.from(Array(6-minimalismo), () => {
+            {Array.from(Array(maxLife-minimalismo), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
             </div>
@@ -113,19 +120,18 @@ const Home: NextPage = () => {
               {Array.from(Array(prevencao), () => {
                 return <div className={styles.star} style={{backgroundColor: "yellow"}}/>
              })}
-            {Array.from(Array(6-prevencao), () => {
+            {Array.from(Array(maxLife-prevencao), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
             </div>
         
             <div className={styles.inputTitle2}>
-               Média: {media}
+               Média: {media}/6
             </div>
 
         </div>
-        <div className={styles.pixel}>
-            <div className={styles.pixelBody} 
-              style={{backgroundColor:color}}>
+      <div className={styles.pixel}>
+            <div className={styles.pixelBody} style={{ backgroundColor: color }}>
                 <div>
                     <div className={styles.pixelEye} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}>
                         <div className={styles.pixelPupil} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}/>

@@ -20,7 +20,7 @@
 }
 
 .inputTitle{
-    padding: 3rem 2rem;
+    padding: 0 2rem 3rem 2rem;
 
     font-family: Roboto Mono;
     font-style: normal;
@@ -86,7 +86,6 @@
     box-sizing: border-box;
     width: 5rem;
     height: 5rem;
-
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -165,3 +164,18 @@
     transform: rotate(90deg);
 }
 
+.logoutDiv{
+    width: 90%;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+
+    font-family: Roboto Mono;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 46px;
+
+    color: #FFFFFF;
+}

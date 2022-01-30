@@ -104,3 +104,9 @@
 .mouth{
     margin-top: 3rem;
 }
+
+.backButton{
+    cursor: pointer;
+    width: 90%;
+    justify-content: left;
+}

@@ -1,13 +1,17 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+import { AppContext } from '../context/contextapi'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
 
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
+
+
+  const { firstAccess } = useContext(AppContext)
 
   return (
     <div className={styles.container}>
@@ -37,7 +41,7 @@ const Home: NextPage = () => {
         </button>
         
         :
-        <Link href="/pixelname">
+        <Link href={firstAccess?"/pixelname":"/pixellife"}>
           <button 
             className={styles.button}
           >
