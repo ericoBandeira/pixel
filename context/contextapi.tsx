@@ -9,6 +9,14 @@ interface RoutesContextData {
     setPixelName: React.Dispatch<React.SetStateAction<string>>;
     setCircle: React.Dispatch<React.SetStateAction<boolean>>;
     setColor: React.Dispatch<React.SetStateAction<string>>;
+    visibilidade: number
+    correspondencia: number
+    controle: number
+    reconhecimento: number
+    consistencia: number
+    eficiencia: number
+    minimalismo: number
+    prevencao: number
 }
 
 interface AppProviderProps {
@@ -19,10 +27,19 @@ export const AppContext = createContext({} as RoutesContextData);
 
 export function AppProvider({ children }: AppProviderProps) {
     
-    const [pixelName, setPixelName] = useState('')
-    const [square, setSquare] = useState(true)
-    const [circle, setCircle] = useState(false)
-    const [color, setColor] = useState('')
+  const [pixelName, setPixelName] = useState('')
+  const [square, setSquare] = useState(true)
+  const [circle, setCircle] = useState(false)
+  const [color, setColor] = useState('')
+  
+  const visibilidade = 5;
+  const correspondencia = 3;
+  const controle = 2;
+  const consistencia = 4;
+  const reconhecimento = 6;
+  const eficiencia = 3;
+  const minimalismo = 2;
+  const prevencao = 1;
 
   return (
     <AppContext.Provider
@@ -34,7 +51,15 @@ export function AppProvider({ children }: AppProviderProps) {
             setSquare,
             setPixelName,
             setCircle,
-            setColor
+            setColor,
+            visibilidade,
+            correspondencia,
+            controle,
+            reconhecimento,
+            consistencia,
+            eficiencia,
+            minimalismo,
+            prevencao
         }}
     >
       {children}
