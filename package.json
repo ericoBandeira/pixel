@@ -3,7 +3,8 @@
   "description": "a really cool app",
   "version": "0.0.1",
   "engines": {
-    "yarn": "1.22.11"
+    "yarn": "1.22.11",
+    "node" : ">=14.17.5" 
   },
   "private": true,
   "scripts": {
