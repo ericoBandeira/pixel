@@ -1,8 +1,9 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AppContext } from '../context/contextapi'
 import styles from '../styles/PixelLife.module.css'
+import Modal from 'react-modal';
 
 const Home: NextPage = () => {
 
@@ -18,14 +19,25 @@ const Home: NextPage = () => {
     consistencia,
     eficiencia,
     minimalismo,
-    prevencao
+    prevencao,
+    setVisibilidade,
+    setCorrespondencia,
+    setControle,
+    setConsistencia,
+    setReconhecimento,
+    setEficiencia,
+    setMinimalismo,
+    setPrevencao
   } = useContext(AppContext)
 
   const media = (visibilidade + correspondencia + controle + reconhecimento + consistencia + eficiencia + minimalismo + prevencao)/8
   
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
   const maxLife = 6
 
   return (
+    <>
     <div className={styles.container}>
       <div className={styles.data}>
             <Link href="/">
@@ -125,9 +137,12 @@ const Home: NextPage = () => {
               })}
             </div>
         
-            <div className={styles.inputTitle2}>
-               Média: {media}/6
-            </div>
+            <button
+              className={styles.button}
+              onClick={() => { setModalIsOpen(true)}}
+            >
+                  Alimente seu Pixel
+            </button>
 
         </div>
       <div className={styles.pixel}>
@@ -140,7 +155,7 @@ const Home: NextPage = () => {
                         <div className={styles.pixelPupil} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}/>
                     </div>
                   </div>
-                  <div className={styles.mouth} style={media<3?{transform:"rotate(180deg)"}:{}}>
+                  <div className={styles.mouth} style={media<=3?{transform:"rotate(180deg)"}:{}}>
                     <svg width="117" height="48" viewBox="0 0 117 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="15.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
                     <rect x="75.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
@@ -152,6 +167,71 @@ const Home: NextPage = () => {
             </div>
         </div>
     </div>
+     <Modal
+        isOpen={modalIsOpen}
+        className={styles.modal}
+      >
+      <span>
+        Dê sua nota para os aspectos gerais do projeto
+        </span>
+        <label className={styles.label}>
+          Visibilidade
+          <input type="number" value={visibilidade} min="0" max="6" onChange={(e)=>setVisibilidade(Number(e.target.value))} />
+        </label>
+
+        <label className={styles.label}>
+          Correspondência
+          <input type="number" value={ correspondencia } min="0" max="6" onChange={(e)=>setCorrespondencia(Number(e.target.value))}/>
+        </label>
+
+        <label className={styles.label}>
+          Controle
+          <input type="number" value={ controle } min="0" max="6" onChange={(e)=>setControle(Number(e.target.value))}/>
+        </label>
+
+        <label className={styles.label}>
+          Consistência
+          <input type="number" value={ consistencia } min="0" max="6" onChange={(e)=>setConsistencia(Number(e.target.value))}/>
+        </label>
+
+        <label className={styles.label}>
+          Reconhecimento
+          <input type="number" value={ reconhecimento } min="0" max="6" onChange={(e)=>setReconhecimento(Number(e.target.value))}/>
+        </label>
+
+        <label className={styles.label}>
+          Eficiência de uso
+          <input type="number" value={ eficiencia } min="0" max="6" onChange={(e)=>setEficiencia(Number(e.target.value))}/>
+        </label>
+
+        <label className={styles.label}>
+          Minimalismo
+          <input type="number" value={ minimalismo } min="0" max="6" onChange={(e)=>setMinimalismo(Number(e.target.value))}/>
+        </label>
+
+        <label className={styles.label}>
+          Prevenção de erros
+          <input type="number" value={ prevencao } min="0" max="6" onChange={(e)=>setPrevencao(Number(e.target.value))}/>
+        </label>
+      <div className={styles.buttonDiv}>
+        <button
+          className={styles.CancelButton}
+          onClick={() => { setModalIsOpen(false) }}
+          >
+              Cancelar
+          </button>
+          <Link href="/pixellife">
+            <button
+              className={styles.button}
+              onClick={() => {}}
+            >
+              Alimentar
+            </button>
+          </Link>
+      </div>
+      </Modal>
+      
+    </>
   )
 }
 

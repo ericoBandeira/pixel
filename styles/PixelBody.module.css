@@ -63,7 +63,6 @@
 
 }
 
-
 .CancelButton:hover{
     opacity: 0.8;
 }   
@@ -162,7 +161,8 @@
 
 .popover{
     position: absolute;
-  }
+}
+
 .cover{
     position:relative;
     top: 0px;

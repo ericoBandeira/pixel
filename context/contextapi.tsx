@@ -19,6 +19,14 @@ interface RoutesContextData {
     prevencao: number,
     firstAccess: boolean
     setFirstAccess: React.Dispatch<React.SetStateAction<boolean>>;
+    setVisibilidade: React.Dispatch<React.SetStateAction<number>>;
+    setCorrespondencia: React.Dispatch<React.SetStateAction<number>>;
+    setControle: React.Dispatch<React.SetStateAction<number>>;
+    setConsistencia: React.Dispatch<React.SetStateAction<number>>;
+    setReconhecimento: React.Dispatch<React.SetStateAction<number>>;
+    setEficiencia: React.Dispatch<React.SetStateAction<number>>;
+    setMinimalismo: React.Dispatch<React.SetStateAction<number>>;
+    setPrevencao: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface AppProviderProps {
@@ -35,14 +43,14 @@ export function AppProvider({ children }: AppProviderProps) {
   const [color, setColor] = useState('')
   const [firstAccess, setFirstAccess] = useState(true)
   
-  const visibilidade = 5;
-  const correspondencia = 3;
-  const controle = 2;
-  const consistencia = 4;
-  const reconhecimento = 6;
-  const eficiencia = 3;
-  const minimalismo = 2;
-  const prevencao = 1;
+  const [visibilidade, setVisibilidade ]= useState(0);
+  const [correspondencia, setCorrespondencia ]= useState(0);
+  const [controle, setControle] = useState(0);
+  const [consistencia, setConsistencia] = useState(0);
+  const [reconhecimento, setReconhecimento] = useState(0);
+  const [eficiencia, setEficiencia] = useState(0);
+  const [minimalismo, setMinimalismo] = useState(0);
+  const [prevencao, setPrevencao] = useState(0);
 
   return (
     <AppContext.Provider
@@ -64,7 +72,15 @@ export function AppProvider({ children }: AppProviderProps) {
             minimalismo,
             prevencao,
             firstAccess,
-            setFirstAccess
+            setFirstAccess,
+            setVisibilidade,
+            setCorrespondencia,
+            setControle,
+            setConsistencia,
+            setReconhecimento,
+            setEficiencia,
+            setMinimalismo,
+            setPrevencao
         }}
     >
       {children}
