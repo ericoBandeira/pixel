@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../context/contextapi'
 import styles from '../styles/PixelLife.module.css'
 import Modal from 'react-modal';
@@ -33,8 +33,18 @@ const Home: NextPage = () => {
   const media = (visibilidade + correspondencia + controle + reconhecimento + consistencia + eficiencia + minimalismo + prevencao) / 8
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [modalIsOpenPixel, setModalIsOpenPixel] = useState(false)
+  const [wkend, setWkend] = useState(true)
 
   const maxLife = 6
+
+  var today = new Date()
+
+  var dayOfWeek = today.getDay();
+  var isWeekend = (dayOfWeek === 5) || (dayOfWeek  === 6) || (dayOfWeek  === 0) || (dayOfWeek  === 1); // 6 = Saturday, 0 = Sunday
+  
+  useEffect(() => {
+    isWeekend ? setWkend(false) : setWkend(true)
+  },[dayOfWeek])
 
   return (
     <>
@@ -135,7 +145,7 @@ const Home: NextPage = () => {
             <button
               className={styles.button1}
               onClick={() => { setModalIsOpen(true) }}
-              disabled={false}
+              disabled={wkend}
             >
               Alimente seu Pixel
             </button>

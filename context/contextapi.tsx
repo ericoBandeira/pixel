@@ -47,14 +47,14 @@ export function AppProvider({ children }: AppProviderProps) {
 
   const [firstAccess, setFirstAccess] = useState(true)
   
-  const [visibilidade, setVisibilidade ]= useState(0);
-  const [correspondencia, setCorrespondencia ]= useState(0);
-  const [controle, setControle] = useState(0);
-  const [consistencia, setConsistencia] = useState(0);
-  const [reconhecimento, setReconhecimento] = useState(0);
-  const [eficiencia, setEficiencia] = useState(0);
-  const [minimalismo, setMinimalismo] = useState(0);
-  const [prevencao, setPrevencao] = useState(0);
+  const [visibilidade, setVisibilidade ]= useState(3);
+  const [correspondencia, setCorrespondencia ]= useState(3);
+  const [controle, setControle] = useState(3);
+  const [consistencia, setConsistencia] = useState(3);
+  const [reconhecimento, setReconhecimento] = useState(3);
+  const [eficiencia, setEficiencia] = useState(3);
+  const [minimalismo, setMinimalismo] = useState(3);
+  const [prevencao, setPrevencao] = useState(3);
 
   const desvPadrao = 1
   const mediaTeam = 3
