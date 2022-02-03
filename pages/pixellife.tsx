@@ -30,9 +30,9 @@ const Home: NextPage = () => {
     setPrevencao
   } = useContext(AppContext)
 
-  const media = (visibilidade + correspondencia + controle + reconhecimento + consistencia + eficiencia + minimalismo + prevencao)/8
-  
+  const media = (visibilidade + correspondencia + controle + reconhecimento + consistencia + eficiencia + minimalismo + prevencao) / 8
   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [modalIsOpenPixel, setModalIsOpenPixel] = useState(false)
 
   const maxLife = 6
 
@@ -40,11 +40,6 @@ const Home: NextPage = () => {
     <>
     <div className={styles.container}>
       <div className={styles.data}>
-            <Link href="/">
-              <button className={styles.logoutDiv} >
-                Logout
-              </button>
-            </Link>
             <div className={styles.inputTitle}>
                 Seu Pixel: {pixelName}
             </div>
@@ -138,14 +133,26 @@ const Home: NextPage = () => {
             </div>
         
             <button
-              className={styles.button}
-              onClick={() => { setModalIsOpen(true)}}
+              className={styles.button1}
+              onClick={() => { setModalIsOpen(true) }}
+              disabled={false}
             >
-                  Alimente seu Pixel
+              Alimente seu Pixel
             </button>
+            <Link href="/">
+            <button className={styles.CancelButton1} >
+                Logout
+              </button>
+            </Link>
 
+            <button 
+              className={styles.textButton}
+              onClick={() => { setModalIsOpenPixel(true) }}
+            >
+              Acompanhe o Pixel da sua equipe
+            </button>
         </div>
-      <div className={styles.pixel}>
+        <div className={styles.pixel}>
             <div className={styles.pixelBody} style={{ backgroundColor: color }}>
                 <div>
                     <div className={styles.pixelEye} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}>
@@ -155,15 +162,21 @@ const Home: NextPage = () => {
                         <div className={styles.pixelPupil} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}/>
                     </div>
                   </div>
-                  <div className={styles.mouth} style={media<=3?{transform:"rotate(180deg)"}:{}}>
-                    <svg width="117" height="48" viewBox="0 0 117 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="15.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                    <rect x="75.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                    <rect x="89.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                    <rect x="1.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                    <rect x="30.5" y="24.5" width="58" height="22" fill="black" stroke="black" strokeWidth="3"/>
-                    </svg>
-                  </div>
+                  {media === 3 ?
+                    <div className={styles.mouth}>
+                      <svg width="82" height="25" viewBox="0 0 82 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="1.5" y="1.5" width="79" height="22" fill="black" stroke="black" stroke-width="3"/>
+                      </svg>
+                    </div>
+                  : <div className={styles.mouth} style={media < 3 ? { transform: "rotate(180deg)" } : {}}>
+                      <svg width="117" height="48" viewBox="0 0 117 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="15.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
+                      <rect x="75.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
+                      <rect x="89.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
+                      <rect x="1.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
+                      <rect x="30.5" y="24.5" width="58" height="22" fill="black" stroke="black" strokeWidth="3"/>
+                      </svg>
+                    </div>}
             </div>
         </div>
     </div>
@@ -176,42 +189,42 @@ const Home: NextPage = () => {
         </span>
         <label className={styles.label}>
           Visibilidade
-          <input type="number" value={visibilidade} min="0" max="6" onChange={(e)=>setVisibilidade(Number(e.target.value))} />
+          <input type="number" value={visibilidade} min="0" max={maxLife} onChange={(e)=>setVisibilidade(Number(e.target.value))} />
         </label>
 
         <label className={styles.label}>
           Correspondência
-          <input type="number" value={ correspondencia } min="0" max="6" onChange={(e)=>setCorrespondencia(Number(e.target.value))}/>
+          <input type="number" value={ correspondencia } min="0" max={maxLife}onChange={(e)=>setCorrespondencia(Number(e.target.value))}/>
         </label>
 
         <label className={styles.label}>
           Controle
-          <input type="number" value={ controle } min="0" max="6" onChange={(e)=>setControle(Number(e.target.value))}/>
+          <input type="number" value={ controle } min="0" max={maxLife} onChange={(e)=>setControle(Number(e.target.value))}/>
         </label>
 
         <label className={styles.label}>
           Consistência
-          <input type="number" value={ consistencia } min="0" max="6" onChange={(e)=>setConsistencia(Number(e.target.value))}/>
+          <input type="number" value={ consistencia } min="0" max={maxLife} onChange={(e)=>setConsistencia(Number(e.target.value))}/>
         </label>
 
         <label className={styles.label}>
           Reconhecimento
-          <input type="number" value={ reconhecimento } min="0" max="6" onChange={(e)=>setReconhecimento(Number(e.target.value))}/>
+          <input type="number" value={ reconhecimento } min="0" max={maxLife} onChange={(e)=>setReconhecimento(Number(e.target.value))}/>
         </label>
 
         <label className={styles.label}>
           Eficiência de uso
-          <input type="number" value={ eficiencia } min="0" max="6" onChange={(e)=>setEficiencia(Number(e.target.value))}/>
+          <input type="number" value={ eficiencia } min="0" max={maxLife} onChange={(e)=>setEficiencia(Number(e.target.value))}/>
         </label>
 
         <label className={styles.label}>
           Minimalismo
-          <input type="number" value={ minimalismo } min="0" max="6" onChange={(e)=>setMinimalismo(Number(e.target.value))}/>
+          <input type="number" value={ minimalismo } min="0" max={maxLife} onChange={(e)=>setMinimalismo(Number(e.target.value))}/>
         </label>
 
         <label className={styles.label}>
           Prevenção de erros
-          <input type="number" value={ prevencao } min="0" max="6" onChange={(e)=>setPrevencao(Number(e.target.value))}/>
+          <input type="number" value={ prevencao } min="0" max={maxLife} onChange={(e)=>setPrevencao(Number(e.target.value))}/>
         </label>
       <div className={styles.buttonDiv}>
         <button
@@ -228,9 +241,47 @@ const Home: NextPage = () => {
               Alimentar
             </button>
           </Link>
-      </div>
+        </div>
       </Modal>
       
+      <Modal
+        isOpen={modalIsOpenPixel}
+        className={styles.modal}
+      >
+        <div className={styles.pixelBody} style={{ backgroundColor: "#00F3F3", marginTop:"3rem"}}>
+            <div>
+                <div className={styles.pixelEye} >
+                    <div className={styles.pixelPupil} />
+                </div>
+                <div className={styles.pixelEye}>
+                    <div className={styles.pixelPupil}/>
+                </div>
+              </div>
+              {media === 3 ?
+              <div className={styles.mouth}>
+                <svg width="82" height="25" viewBox="0 0 82 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1.5" y="1.5" width="79" height="22" fill="black" stroke="black" stroke-width="3"/>
+                </svg>
+              </div>
+              : <div className={styles.mouth} style={media < 3 ? { transform: "rotate(180deg)" } : {}}>
+                <svg width="117" height="48" viewBox="0 0 117 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="15.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
+                <rect x="75.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
+                <rect x="89.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
+                <rect x="1.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
+                <rect x="30.5" y="24.5" width="58" height="22" fill="black" stroke="black" strokeWidth="3"/>
+                </svg>
+              </div>}
+        </div>
+      
+        <button
+          className={styles.button}
+          onClick={() => { setModalIsOpenPixel(false) }}
+          style={{marginBottom: "3rem"}}
+          >
+              Voltar
+          </button>
+      </Modal>  
     </>
   )
 }

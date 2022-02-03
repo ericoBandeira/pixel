@@ -5,22 +5,23 @@
 }
 
 .data{
+    overflow: auto; 
     display: flex;
     flex-direction: column;
     background-color: #86ACC1;
     align-items: center;
-    justify-content: center;
 }
 
 .pixel{
     width: 70%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .inputTitle{
-    padding: 0 2rem 3rem 2rem;
+    padding: 0 2rem 1rem 2rem;
 
     font-family: Roboto Mono;
     font-style: normal;
@@ -62,9 +63,36 @@
     transition: 0.4s;
 }
 
+.button1{
+    margin-top: 2rem;
+    cursor: pointer;
+    font-family: Roboto Mono;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 53px;
+    color: #FFFFFF;
+
+    min-width: 20rem;
+    background: #63879A;
+    border-radius: 15px;
+    border: none;
+    transition: 0.4s;
+}
+
 .button:hover{
     opacity: 0.8;
-}   
+}  
+
+.button1:hover{
+    opacity: 0.8;
+}  
+
+
+.button1:disabled{
+    background: gray;
+    cursor: not-allowed;
+}  
 
 .pixelBody{
     background: #00F3F3;
@@ -180,23 +208,6 @@
     color: #FFFFFF;
 }
 
-.button{
-    margin-top: 5rem;
-    cursor: pointer;
-    font-family: Roboto Mono;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1rem;
-    line-height: 53px;
-    color: #FFFFFF;
-
-    min-width: 20rem;
-    background: #63879A;
-    border-radius: 15px;
-    border: none;
-    transition: 0.4s;
-}
-
 
 .modal{
     display: flex;
@@ -253,6 +264,31 @@
     transition: 0.4s;
 }
 
+.CancelButton1{
+    margin-top: 0.5rem;
+    cursor: pointer;
+    font-family: Roboto Mono;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 53px;
+    color: #FFFFFF;
+
+    min-width: 20rem;
+    background: #E52C2C;
+    border-radius: 15px;
+    border: none;
+    transition: 0.4s;
+}
+
+.CancelButton:hover{
+    opacity: 0.8;
+}  
+
+.CancelButton1:hover{
+    opacity: 0.8;
+}  
+
 .label{
     margin-top: 1rem;
     align-items: center;
@@ -266,4 +302,14 @@
     margin-left: 1rem;
     height: 2rem;
     width: 2.5rem;
+}
+
+.textButton{
+    cursor: pointer;
+    color: black;
+    font-family: Roboto Mono;
+    font-size: 1rem;
+    background: none;
+    border: none;
+    text-decoration: underline;
 }

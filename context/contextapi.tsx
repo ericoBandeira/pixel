@@ -27,6 +27,9 @@ interface RoutesContextData {
     setEficiencia: React.Dispatch<React.SetStateAction<number>>;
     setMinimalismo: React.Dispatch<React.SetStateAction<number>>;
     setPrevencao: React.Dispatch<React.SetStateAction<number>>;
+    desvPadrao: number
+    mediaTeam: number
+    teamHappiness: number
 }
 
 interface AppProviderProps {
@@ -41,6 +44,7 @@ export function AppProvider({ children }: AppProviderProps) {
   const [square, setSquare] = useState(true)
   const [circle, setCircle] = useState(false)
   const [color, setColor] = useState('')
+
   const [firstAccess, setFirstAccess] = useState(true)
   
   const [visibilidade, setVisibilidade ]= useState(0);
@@ -51,6 +55,10 @@ export function AppProvider({ children }: AppProviderProps) {
   const [eficiencia, setEficiencia] = useState(0);
   const [minimalismo, setMinimalismo] = useState(0);
   const [prevencao, setPrevencao] = useState(0);
+
+  const desvPadrao = 1
+  const mediaTeam = 3
+  const teamHappiness = (mediaTeam * 0.5) + (desvPadrao * 0.5)
 
   return (
     <AppContext.Provider
@@ -80,7 +88,10 @@ export function AppProvider({ children }: AppProviderProps) {
             setReconhecimento,
             setEficiencia,
             setMinimalismo,
-            setPrevencao
+            setPrevencao,
+            desvPadrao,
+            mediaTeam,
+            teamHappiness
         }}
     >
       {children}
