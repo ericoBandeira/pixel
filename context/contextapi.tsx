@@ -27,9 +27,9 @@ interface RoutesContextData {
     setEficiencia: React.Dispatch<React.SetStateAction<number>>;
     setMinimalismo: React.Dispatch<React.SetStateAction<number>>;
     setPrevencao: React.Dispatch<React.SetStateAction<number>>;
-    desvPadrao: number
-    mediaTeam: number
-    teamHappiness: number
+    desvPadrao: number;
+    mediaTeam: number;
+    teamHappiness: number;
 }
 
 interface AppProviderProps {
