@@ -15,8 +15,8 @@ const Home: NextPage = () => {
           <Link href="/">
             <div className={styles.backButton}>
               <svg width="15" height="22" viewBox="0 0 15 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="13.0607" y1="1.06066" x2="4.06066" y2="10.0607" stroke="white" stroke-width="3"/>
-              <line x1="11.9393" y1="20.0607" x2="1.93934" y2="10.0607" stroke="white" stroke-width="3"/>
+              <line x1="13.0607" y1="1.06066" x2="4.06066" y2="10.0607" stroke="white" strokeWidth="3"/>
+              <line x1="11.9393" y1="20.0607" x2="1.93934" y2="10.0607" stroke="white" strokeWidth="3"/>
               </svg>
             </div>
             </Link>
@@ -63,11 +63,11 @@ const Home: NextPage = () => {
                   </div>
                   <div className={styles.mouth}>
                     <svg width="117" height="48" viewBox="0 0 117 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="15.5" y="15.5" width="26" height="25" fill="black" stroke="black" stroke-width="3"/>
-                    <rect x="75.5" y="15.5" width="26" height="25" fill="black" stroke="black" stroke-width="3"/>
-                    <rect x="89.5" y="1.5" width="26" height="25" fill="black" stroke="black" stroke-width="3"/>
-                    <rect x="1.5" y="1.5" width="26" height="25" fill="black" stroke="black" stroke-width="3"/>
-                    <rect x="30.5" y="24.5" width="58" height="22" fill="black" stroke="black" stroke-width="3"/>
+                    <rect x="15.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
+                    <rect x="75.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
+                    <rect x="89.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
+                    <rect x="1.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
+                    <rect x="30.5" y="24.5" width="58" height="22" fill="black" stroke="black" strokeWidth="3"/>
                     </svg>
                   </div>
             </div>

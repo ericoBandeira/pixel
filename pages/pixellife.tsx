@@ -175,7 +175,7 @@ const Home: NextPage = () => {
                   {media === 3 ?
                     <div className={styles.mouth}>
                       <svg width="82" height="25" viewBox="0 0 82 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="1.5" y="1.5" width="79" height="22" fill="black" stroke="black" stroke-width="3"/>
+                      <rect x="1.5" y="1.5" width="79" height="22" fill="black" stroke="black" strokeWidth="3"/>
                       </svg>
                     </div>
                   : <div className={styles.mouth} style={media < 3 ? { transform: "rotate(180deg)" } : {}}>
@@ -270,7 +270,7 @@ const Home: NextPage = () => {
               {media === 3 ?
               <div className={styles.mouth}>
                 <svg width="82" height="25" viewBox="0 0 82 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1.5" y="1.5" width="79" height="22" fill="black" stroke="black" stroke-width="3"/>
+                <rect x="1.5" y="1.5" width="79" height="22" fill="black" stroke="black" strokeWidth="3"/>
                 </svg>
               </div>
               : <div className={styles.mouth} style={media < 3 ? { transform: "rotate(180deg)" } : {}}>
