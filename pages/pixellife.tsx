@@ -385,6 +385,7 @@ const Home: NextPage = () => {
           className={styles.CancelButton}
             onClick={() => {
               setModalIsOpenEvaluation(false);
+              window.location.reload();
             }}
           >
               Cancelar
@@ -392,7 +393,9 @@ const Home: NextPage = () => {
           <Link href="/pixellife">
             <button
               className={styles.button}
-              onClick={() => {}}
+              onClick={() => {
+                window.location.reload();
+              }}
             >
               Alterar
             </button>

@@ -81,7 +81,7 @@ const Home: NextPage = () => {
         </button>
         
         :
-        <Link href={firstAccess?"/pixelname":"/pixellife"}>
+        <Link href={firstAccess?"/history":"/pixellife"}>
           <button 
             className={styles.button}
           >
