@@ -313,3 +313,20 @@
     border: none;
     text-decoration: underline;
 }
+
+.labelCheckbox{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    align-items: center;
+    font-family: Roboto Mono;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.labelCheckbox > input{
+    font-size: 1rem;
+    margin-left: 1rem;
+    height: 2rem;
+    width: 2.5rem;
+}

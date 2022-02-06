@@ -27,12 +27,29 @@ const Home: NextPage = () => {
     setReconhecimento,
     setEficiencia,
     setMinimalismo,
-    setPrevencao
+    setPrevencao,
+    ableVisibilidade,
+    ableCorrespondencia,
+    ableControle,
+    ableConsistencia,
+    ableReconhecimento,
+    ableEficiencia,
+    ableMinimalismo,
+    ablePrevencao,
+    setAbleVisibilidade,
+    setAbleCorrespondencia,
+    setAbleControle,
+    setAbleConsistencia,
+    setAbleReconhecimento,
+    setAbleEficiencia,
+    setAbleMinimalismo,
+    setAblePrevencao,
   } = useContext(AppContext)
 
   const media = (visibilidade + correspondencia + controle + reconhecimento + consistencia + eficiencia + minimalismo + prevencao) / 8
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [modalIsOpenPixel, setModalIsOpenPixel] = useState(false)
+  const [modalIsOpenEvaluation, setModalIsOpenEvaluation ] = useState(false)
   const [wkend, setWkend] = useState(true)
 
   const maxLife = 6
@@ -49,10 +66,12 @@ const Home: NextPage = () => {
   return (
     <>
     <div className={styles.container}>
-      <div className={styles.data}>
+        <div className={styles.data}>
+          
             <div className={styles.inputTitle}>
                 Seu Pixel: {pixelName}
-            </div>
+          </div>
+          {ableVisibilidade &&<>
             <div className={styles.inputTitle1}>
                Visibilidade:
             </div>
@@ -63,7 +82,8 @@ const Home: NextPage = () => {
             {Array.from(Array(maxLife-visibilidade), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
-            </div>
+          </div></>}
+         { ableCorrespondencia && <>
             <div className={styles.inputTitle1}>
                Correspondência:
             </div>
@@ -74,7 +94,8 @@ const Home: NextPage = () => {
             {Array.from(Array(maxLife-correspondencia), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
-            </div>
+          </div></>}
+         { ableControle && <>
             <div className={styles.inputTitle1}>
                Controle:
             </div>
@@ -85,7 +106,8 @@ const Home: NextPage = () => {
             {Array.from(Array(maxLife-controle), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
-            </div>
+          </div></>}
+         {ableConsistencia &&<>
             <div className={styles.inputTitle1}>
                Consistência:
             </div>
@@ -96,7 +118,8 @@ const Home: NextPage = () => {
             {Array.from(Array(maxLife-consistencia), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
-            </div>
+          </div></>}
+          {ableReconhecimento &&<>
             <div className={styles.inputTitle1}>
                Reconhecimento:
             </div>
@@ -107,7 +130,8 @@ const Home: NextPage = () => {
             {Array.from(Array(maxLife-reconhecimento), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
-            </div>
+          </div></>}
+         { ableEficiencia &&<>
             <div className={styles.inputTitle1}>
                Eficiência de uso:
             </div>
@@ -118,7 +142,11 @@ const Home: NextPage = () => {
             {Array.from(Array(maxLife-eficiencia), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
-            </div>
+          </div>
+            </>
+          }
+          {ableMinimalismo &&
+            <>
             <div className={styles.inputTitle1}>
                Minimalismo:
             </div>
@@ -129,7 +157,11 @@ const Home: NextPage = () => {
             {Array.from(Array(maxLife-minimalismo), () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
-            </div>
+          </div>
+          </>}
+
+          {ablePrevencao &&
+            <>
             <div className={styles.inputTitle1}>
                Prevenção de erros:
             </div>
@@ -141,6 +173,7 @@ const Home: NextPage = () => {
                 return <div className={styles.star} style={{backgroundColor: "gray"}}/>
               })}
             </div>
+          </>}
         
             <button
               className={styles.button1}
@@ -160,6 +193,13 @@ const Home: NextPage = () => {
               onClick={() => { setModalIsOpenPixel(true) }}
             >
               Acompanhe o Pixel da sua equipe
+            </button>
+            
+            <button 
+              className={styles.textButton}
+              onClick={() => { setModalIsOpenEvaluation(true) }}
+            >
+              Edite os campos de avaliação
             </button>
         </div>
         <div className={styles.pixel}>
@@ -291,7 +331,74 @@ const Home: NextPage = () => {
           >
               Voltar
           </button>
-      </Modal>  
+      </Modal>
+      
+
+     <Modal
+        isOpen={modalIsOpenEvaluation}
+        className={styles.modal}
+      >
+      <span>
+        Qual desses tipos de avaliação você usa?
+        </span>
+        <label className={styles.labelCheckbox}>
+          Visibilidade
+          <input type="checkbox" checked={ableVisibilidade} onChange={(e)=>setAbleVisibilidade(!ableVisibilidade)} />
+        </label>
+
+        <label className={styles.labelCheckbox}>
+          Correspondência
+          <input type="checkbox" checked={ ableCorrespondencia } onChange={(e)=>setAbleCorrespondencia(!ableCorrespondencia)}/>
+        </label>
+
+        <label className={styles.labelCheckbox}>
+          Controle
+          <input type="checkbox" checked={ ableControle }  onChange={(e)=>setAbleControle(!ableControle)}/>
+        </label>
+
+        <label className={styles.labelCheckbox}>
+          Consistência
+          <input type="checkbox" checked={ ableConsistencia } onChange={(e)=>setAbleConsistencia(!ableConsistencia)}/>
+        </label>
+
+        <label className={styles.labelCheckbox}>
+          Reconhecimento
+          <input type="checkbox" checked={ ableReconhecimento } onChange={(e)=>setAbleReconhecimento(!ableReconhecimento)}/>
+        </label>
+
+        <label className={styles.labelCheckbox}>
+          Eficiência de uso
+          <input type="checkbox" checked={ ableEficiencia }  onChange={(e)=>setAbleEficiencia(!ableEficiencia)}/>
+        </label>
+
+        <label className={styles.labelCheckbox}>
+          Minimalismo
+          <input type="checkbox" checked={ ableMinimalismo }  onChange={(e)=>setAbleMinimalismo(!ableMinimalismo)}/>
+        </label>
+
+        <label className={styles.labelCheckbox}>
+          Prevenção de erros
+          <input type="checkbox" checked={ ablePrevencao }  onChange={(e)=>setAblePrevencao(!ablePrevencao)}/>
+        </label>
+      <div className={styles.buttonDiv}>
+        <button
+          className={styles.CancelButton}
+            onClick={() => {
+              setModalIsOpenEvaluation(false);
+            }}
+          >
+              Cancelar
+          </button>
+          <Link href="/pixellife">
+            <button
+              className={styles.button}
+              onClick={() => {}}
+            >
+              Alterar
+            </button>
+          </Link>
+        </div>
+      </Modal>
     </>
   )
 }

@@ -12,7 +12,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
         <div className={styles.data}>
-          <Link href="/">
+          <Link href="/history">
             <div className={styles.backButton}>
               <svg width="15" height="22" viewBox="0 0 15 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <line x1="13.0607" y1="1.06066" x2="4.06066" y2="10.0607" stroke="white" strokeWidth="3"/>

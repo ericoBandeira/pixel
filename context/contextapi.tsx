@@ -30,6 +30,22 @@ interface RoutesContextData {
     desvPadrao: number;
     mediaTeam: number;
     teamHappiness: number;
+    ableVisibilidade: boolean
+    ableCorrespondencia: boolean
+    ableControle: boolean
+    ableConsistencia: boolean
+    ableReconhecimento: boolean
+    ableEficiencia: boolean
+    ableMinimalismo: boolean
+    ablePrevencao: boolean
+    setAbleVisibilidade: React.Dispatch<React.SetStateAction<boolean>>;
+    setAbleCorrespondencia: React.Dispatch<React.SetStateAction<boolean>>;
+    setAbleControle: React.Dispatch<React.SetStateAction<boolean>>;
+    setAbleConsistencia: React.Dispatch<React.SetStateAction<boolean>>;
+    setAbleReconhecimento: React.Dispatch<React.SetStateAction<boolean>>;
+    setAbleEficiencia: React.Dispatch<React.SetStateAction<boolean>>;
+    setAbleMinimalismo: React.Dispatch<React.SetStateAction<boolean>>;
+    setAblePrevencao: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface AppProviderProps {
@@ -40,22 +56,36 @@ export const AppContext = createContext({} as RoutesContextData);
 
 export function AppProvider({ children }: AppProviderProps) {
     
+  //Pixel
   const [pixelName, setPixelName] = useState('')
   const [square, setSquare] = useState(true)
   const [circle, setCircle] = useState(false)
   const [color, setColor] = useState('')
 
+  //Primeiro acesso
   const [firstAccess, setFirstAccess] = useState(true)
   
-  const [visibilidade, setVisibilidade ]= useState(3);
-  const [correspondencia, setCorrespondencia ]= useState(3);
-  const [controle, setControle] = useState(3);
-  const [consistencia, setConsistencia] = useState(3);
-  const [reconhecimento, setReconhecimento] = useState(3);
-  const [eficiencia, setEficiencia] = useState(3);
-  const [minimalismo, setMinimalismo] = useState(3);
-  const [prevencao, setPrevencao] = useState(3);
+  //Alimentação
+  const [visibilidade, setVisibilidade ]= useState(0);
+  const [correspondencia, setCorrespondencia ]= useState(0);
+  const [controle, setControle] = useState(0);
+  const [consistencia, setConsistencia] = useState(0);
+  const [reconhecimento, setReconhecimento] = useState(0);
+  const [eficiencia, setEficiencia] = useState(0);
+  const [minimalismo, setMinimalismo] = useState(0);
+  const [prevencao, setPrevencao] = useState(0);
 
+  //Escondido ou não
+  const [ableVisibilidade, setAbleVisibilidade ]= useState(true);
+  const [ableCorrespondencia, setAbleCorrespondencia ]= useState(true);
+  const [ableControle, setAbleControle] = useState(true);
+  const [ableConsistencia, setAbleConsistencia] = useState(true);
+  const [ableReconhecimento, setAbleReconhecimento] = useState(true);
+  const [ableEficiencia, setAbleEficiencia] = useState(true);
+  const [ableMinimalismo, setAbleMinimalismo] = useState(true);
+  const [ablePrevencao, setAblePrevencao] = useState(true);
+
+  //Média Time
   const desvPadrao = 1
   const mediaTeam = 3
   const teamHappiness = (mediaTeam * 0.5) + (desvPadrao * 0.5)
@@ -91,7 +121,23 @@ export function AppProvider({ children }: AppProviderProps) {
             setPrevencao,
             desvPadrao,
             mediaTeam,
-            teamHappiness
+            teamHappiness,
+            ableVisibilidade,
+            ableCorrespondencia,
+            ableControle,
+            ableConsistencia,
+            ableReconhecimento,
+            ableEficiencia,
+            ableMinimalismo,
+            ablePrevencao,
+            setAbleVisibilidade,
+            setAbleCorrespondencia,
+            setAbleControle,
+            setAbleConsistencia,
+            setAbleReconhecimento,
+            setAbleEficiencia,
+            setAbleMinimalismo,
+            setAblePrevencao,
         }}
     >
       {children}
