@@ -14,15 +14,15 @@ const Home: NextPage = () => {
       </div>}
       {page === 1 && <div className={styles.textContainer}>
         O Pixel é seu animal de estimação virtual<br />
-        para a matéria de IHC este semestre
+        para a matéria de IHC neste semestre
       </div>}
       {page === 2 && <div className={styles.textContainer}>
         Com ele será possível se avaliar em relação às <br />
-        caracteísticas do seu projeto de IHC este semestre <br/>        
+        caracteísticas do seu projeto de IHC <br/>        
       </div>}
       {page === 3 && <div className={styles.textContainer}>
-        Alimente seu Pixel toda semana para que ele <br />
-        e seu projeto evoluirem sempre!
+        Alimente seu Pixel toda semana para que você <br />
+        e seu projeto evoluam sempre!
       </div>}
       {page === 4 && <div className={styles.textContainer}>
        E ai? <br /> Vamos criar o seu Pixel?
