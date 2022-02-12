@@ -4,11 +4,13 @@ import { useContext, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { AppContext } from '../context/contextapi'
 import styles from '../styles/Home.module.css'
+import jwt from 'jsonwebtoken'
 
 const Home: NextPage = () => {
 
-  const [login, setLogin] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [login, setLogin] = useState(false)
 
   const alunos = [
     { key:"180012002", aluno:"Alvaro Henrique de Sousa Gouvea", team: "4"},
@@ -53,33 +55,54 @@ const Home: NextPage = () => {
 
   const { firstAccess } = useContext(AppContext)
 
+  // async function loginFunction() {
+  //   const res = await fetch('/api/login', {
+  //     method: "POST",
+  //     headers: {
+  //       'Content-Type': 'application/json ' 
+  //     },
+  //     body: JSON.stringify({username, password})
+  //   }).then((t) => t.json())
+    
+  //   const token = res.token
+
+  //   if (token) {
+  //     const json = jwt.decode(token )
+  //     setLogin(false)
+  //   } else {
+  //     setLogin(true) 
+  //   }
+  // }
+
   return (
-    <div className={styles.container}>
+    <form method="POST" action="/api/login" className={styles.container}>
       <div className={styles.title}>
         Pixel <p>.</p>
       </div>
-      <input
-        className={styles.input}
-        placeholder="Login"
-        type="email"
-        value={login}
-        onChange={(e)=>setLogin(e.target.value)}
-      />
-      <input
-        className={styles.input}
-        placeholder="Senha"
-        type="password"
-        value={password}
-        onChange={(e)=>setPassword(e.target.value)}
-      />
-      {(login !== 'teste1' && password !== '123456') ?
+        <input
+          className={styles.input}
+          placeholder="Login"
+          name="username"
+          type="email"
+          value={username}
+          onChange={(e)=>setUsername(e.target.value)}
+        />
+        <input
+          className={styles.input}
+          placeholder="Senha"
+          name="password"
+          type="password"
+          value={password}
+          onChange={(e)=>setPassword(e.target.value)}
+        />
+
+      {login ?
         <button 
           className={styles.button}
           onClick={()=>toast.error("Usuário ou senha inválido")}
         >
           Entrar
         </button>
-        
         :
         <Link href={firstAccess?"/history":"/pixellife"}>
           <button 
@@ -89,7 +112,7 @@ const Home: NextPage = () => {
           </button>
         </Link>}
         <Toaster />
-    </div>
+    </form>
   )
 }
 
