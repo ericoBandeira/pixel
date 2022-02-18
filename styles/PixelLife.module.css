@@ -290,6 +290,7 @@
 }  
 
 .label{
+    display: flex;
     margin-top: 1rem;
     align-items: center;
     font-family: Roboto Mono;
@@ -301,7 +302,7 @@
     font-size: 1rem;
     margin-left: 1rem;
     height: 2rem;
-    width: 2.5rem;
+    width: 5rem;
 }
 
 .textButton{
