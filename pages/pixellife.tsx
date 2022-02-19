@@ -53,7 +53,28 @@ const Home: NextPage = () => {
   var today = new Date()
 
   var dayOfWeek = today.getDay();
-  var isWeekend = (dayOfWeek === 5) || (dayOfWeek  === 6) || (dayOfWeek  === 0) || (dayOfWeek  === 1); // 6 = Saturday, 0 = Sunday
+  var isWeekend = (dayOfWeek === 5) || (dayOfWeek === 6) || (dayOfWeek === 0) || (dayOfWeek === 1); // 6 = Saturday, 0 = Sunday
+  
+  function featuresName(name: string) {
+    switch(name) {
+      case 'visibility':
+        return 'Visibilidade';
+      case 'match':
+        return 'Correspondência';
+      case 'control':
+        return 'Controle';
+      case 'consistence':
+        return 'Consistência';
+      case 'recognition':
+        return 'Reconhecimento';
+      case 'error_prevention':
+        return 'Prevenção de erros';
+      case 'efficiency':
+        return 'Eficiência de uso';
+      default:
+        return 'Minimalismo';
+    }
+  }
   
   async function GetPixel(email:any) {
     await apiPixel.get('/pixel/by-mail/?email=' + email).then(res => {
@@ -104,6 +125,7 @@ const Home: NextPage = () => {
     }).then(res => {
       toast.success('Pixel Alimentado com sucesso!')
       setModalIsOpen(false)
+      GetFeed()
     }).catch(err => {
       console.log(err)
     })
@@ -216,7 +238,8 @@ const Home: NextPage = () => {
       console.log(err)
     })
 
-    // window.location.reload();
+    setModalIsOpenEvaluation(false);
+    window.location.reload();
   }
 
   async function getAbled(){
@@ -269,11 +292,11 @@ const Home: NextPage = () => {
               <div className={styles.inputTitle}>
                   Seu Pixel: {pixelName}
               </div>
-              {feed.map((res: any, index) =>
+              {feed.map((res: any) =>
                   res.active &&
                   <>
                     <div className={styles.inputTitle1} key={res.id}>
-                      {features[index]}:
+                      {featuresName(res.name)}:
                     </div>
                     <div className={styles.stars}>
                     {Array.from(Array(res.value), () => {
@@ -556,7 +579,6 @@ const Home: NextPage = () => {
               className={styles.button}
               onClick={() => {
                 ableFeature();
-                setModalIsOpenEvaluation(false);
               }}
             >
               Alterar
