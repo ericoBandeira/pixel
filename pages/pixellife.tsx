@@ -99,7 +99,7 @@ const Home: NextPage = () => {
         error_prevention: prevencao
       }, {
       headers: {
-        'X-Access-Token': token
+        'X-Access-Token': token as string
       }
     }).then(res => {
       toast.success('Pixel Alimentado com sucesso!')
@@ -117,7 +117,7 @@ const Home: NextPage = () => {
       enabled: ableVisibilidade
     }, {
       headers: {
-        'X-Access-Token': token
+        'X-Access-Token': token as string
       }
     }).then(res => {
       // console.log(res.data)
@@ -130,7 +130,7 @@ const Home: NextPage = () => {
       enabled: ableCorrespondencia
     }, {
     headers: {
-      'X-Access-Token': token
+      'X-Access-Token': token as string
     }
     }).then(res => {
       // console.log(res.data)
@@ -143,7 +143,7 @@ const Home: NextPage = () => {
       enabled: ableControle
     }, {
     headers: {
-      'X-Access-Token': token
+      'X-Access-Token': token as string
     }
     }).then(res => {
       // console.log(res.data)
@@ -156,7 +156,7 @@ const Home: NextPage = () => {
       enabled: ableConsistencia
     }, {
     headers: {
-      'X-Access-Token': token
+      'X-Access-Token': token as string
     }
     }).then(res => {
       // console.log(res.data)
@@ -169,7 +169,7 @@ const Home: NextPage = () => {
       enabled: ableReconhecimento
     }, {
     headers: {
-      'X-Access-Token': token
+      'X-Access-Token': token as string
     }
     }).then(res => {
       // console.log(res.data)
@@ -182,7 +182,7 @@ const Home: NextPage = () => {
       enabled: ableEficiencia
     }, {
     headers: {
-      'X-Access-Token': token
+      'X-Access-Token': token as string
     }
     }).then(res => {
       // console.log(res.data)
@@ -195,7 +195,7 @@ const Home: NextPage = () => {
       enabled: ableMinimalismo
     }, {
     headers: {
-      'X-Access-Token': token
+      'X-Access-Token': token as string
     }
     }).then(res => {
       // console.log(res.data)
@@ -208,7 +208,7 @@ const Home: NextPage = () => {
       enabled: ablePrevencao
     }, {
     headers: {
-      'X-Access-Token': token
+      'X-Access-Token': token as string
     }
     }).then(res => {
       // console.log(res.data)
@@ -252,7 +252,7 @@ const Home: NextPage = () => {
   
   useEffect(() => {
     const token = getCookie('nextauth.token');
-    const user = jwt(token);
+    const user:any = jwt(token as string);
     GetPixel(user.email)
     if (pixelId) {
       GetFeed()

@@ -36,7 +36,7 @@ const Home: NextPage = () => {
       color: color,
     }, {
       headers: {
-        'X-Access-Token': token
+        'X-Access-Token': token as string
       }
     }).then(res => {
       window.location.href= '/pixellife'  

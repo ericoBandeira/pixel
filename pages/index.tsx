@@ -106,14 +106,12 @@ const Home: NextPage = () => {
           onChange={(e)=>setPassword(e.target.value)}
         />
 
-        {/* <Link href={firstAccess?"/history":"/pixellife"}> */}
           <button 
             className={styles.button}
             onClick={loginFunction}
           >
             Entrar
           </button>
-        {/* </Link> */}
         <Toaster />
     </div>
   )
