@@ -1,12 +1,13 @@
 import type { NextPage } from 'next'
-import { useContext, useState } from 'react'
-import toast, { Toaster } from 'react-hot-toast'
-import { AppContext } from '../context/contextapi'
+import { useState } from 'react'
+import { Toaster } from 'react-hot-toast'
 import styles from '../styles/Home.module.css'
-import { apiPixel } from '../api/api'
-import { setCookie } from "nookies"
+import loginFunction from '../Model/loginFunction'
+import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
+
+  const router = useRouter();
 
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
@@ -52,38 +53,6 @@ const Home: NextPage = () => {
   //   { key:"160149410", aluno:"Yudi Yamane de Azevedo", team: "2"}
   // ]  
 
-  async function GetPixel(email:any) {
-    await apiPixel.get('/pixel/by-mail/?email=' + email).then(res => {
-      console.log(res)
-      window.location.href = '/pixellife' 
-    }).catch(err => {
-      console.log(err)
-      window.location.href = '/history'
-    })
-  }
-
-  async function loginFunction() {
-     await apiPixel.post('/login',{
-      email: username,
-      password: password
-     }).then(res => {
-
-    const token = res.data.token
-
-    console.log(token)
-    
-    setCookie(undefined, 'nextauth.token', token, {
-      maxAge: 60 * 30 * 1, // 0.5 hour
-    })
-      
-    GetPixel(username);
-    
-    }).catch(err => {
-      console.log(err)
-      toast.error("Usuário ou senha incorreto")
-  })
-  }
-
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -106,12 +75,12 @@ const Home: NextPage = () => {
           onChange={(e)=>setPassword(e.target.value)}
         />
 
-          <button 
-            className={styles.button}
-            onClick={loginFunction}
-          >
-            Entrar
-          </button>
+        <button 
+          className={styles.button}
+          onClick={() => {loginFunction(username, password, router)}}
+        >
+          Entrar
+        </button>
         <Toaster />
     </div>
   )

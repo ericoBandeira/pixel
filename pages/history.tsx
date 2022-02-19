@@ -1,11 +1,29 @@
+import { getCookie } from 'cookies-next';
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import HaveAPixel from '../Model/haveAPixel';
 import styles from '../styles/History.module.css';
 
-const Home: NextPage = () => {
+const History: NextPage = () => {
 
-  const [page,setPage] = useState(0)
+  const [page, setPage] = useState(0)
+  
+  const token = getCookie('nextauth.token');
+
+  const router = useRouter();
+  
+  useEffect(() => {
+
+    HaveAPixel(token, router);
+
+    if (!token) {
+      router.push('/')
+      window.location.reload()
+    }
+  },[token])
+
 
   return (
     <div className={styles.container}>
@@ -63,4 +81,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default History

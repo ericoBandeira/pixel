@@ -1,15 +1,17 @@
 import type { NextPage } from 'next'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styles from '../styles/PixelBody.module.css'
 import { GithubPicker } from 'react-color'
 import Link from 'next/link'
 import { AppContext } from '../context/contextapi'
 import Modal from 'react-modal';
-import { apiPixel } from '../api/api'
-import toast, { Toaster } from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 import { getCookie } from 'cookies-next';
+import { useRouter } from 'next/router'
+import SetPixel from '../Model/setPixel'
+import HaveAPixel from '../Model/haveAPixel'
 
-const Home: NextPage = () => {
+const PixelBody: NextPage = () => {
 
   const [openColorButtom, setOpenColorButton] = useState(false)
 
@@ -17,6 +19,9 @@ const Home: NextPage = () => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
+  const token = getCookie('nextauth.token');
+
+  const router = useRouter();
 
   function handleOpenButton() {
     setOpenColorButton(!openColorButtom)
@@ -24,27 +29,17 @@ const Home: NextPage = () => {
 
   function handlaCloseButton() {
     setOpenColorButton(false)
-  }
+  }  
+  
+  useEffect(() => {
 
-  async function SetPixel() {
+    HaveAPixel(token, router);
 
-    const token = getCookie('nextauth.token');
-    
-    await apiPixel.post('/pixel/new', {
-      name: pixelName,
-      eye: square ? "Quadrado" : "Circulo",
-      color: color,
-    }, {
-      headers: {
-        'X-Access-Token': token as string
-      }
-    }).then(res => {
-      window.location.href= '/pixellife'  
-    }).catch(err => {
-      console.log(err)
-      toast.error("Não foi possível cadastrar seu pixel")
-    })
-  }
+    if (!token) {
+      router.push('/')
+      window.location.reload()
+    }
+  },[token])
 
   return (
     <>
@@ -142,14 +137,12 @@ const Home: NextPage = () => {
             >
                 Cancelar
             </button>
-            {/* <Link href="/pixellife"> */}
-              <button
-                className={styles.button}
-                onClick={SetPixel}
-              >
-                Finalizar
-              </button>
-            {/* </Link> */}
+            <button
+              className={styles.button}
+              onClick={()=>SetPixel(pixelName, square, color, router)}
+            >
+              Finalizar
+            </button>
         </div>
       </Modal>
       <Toaster />
@@ -157,4 +150,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default PixelBody

@@ -1,16 +1,21 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { useContext, useEffect, useState } from 'react'
-import { AppContext } from '../context/contextapi'
+import { useEffect, useState } from 'react'
 import styles from '../styles/PixelLife.module.css'
 import Modal from 'react-modal';
-import { getCookie } from 'cookies-next';
+import { getCookie, removeCookies } from 'cookies-next';
 import jwt from 'jwt-decode'
-import { apiPixel } from '../api/api'
-import toast, { Toaster } from 'react-hot-toast'
+import  { Toaster } from 'react-hot-toast'
+import { useRouter } from 'next/router'
+import featuresName from '../Model/featuresName'
+import GetPixel from '../Model/getPixel'
+import functionFeed from '../Model/functionFeed'
+import GetFeed from '../Model/getFeed'
+import getAbled from '../Model/getAble'
+import ableFeature from '../Model/ableFeature'
 
 
-const Home: NextPage = () => {
+const PixelLife: NextPage = () => {
   
   //Alimentação
   const [visibilidade, setVisibilidade ]= useState(1);
@@ -43,10 +48,9 @@ const Home: NextPage = () => {
   const [ableMinimalismo, setAbleMinimalismo] = useState<boolean>();
   const [ablePrevencao, setAblePrevencao] = useState<boolean>();
 
+  const router = useRouter()
 
   const [feed, setFeed] = useState([])
-
-  const features = ["Visibilidade", "Correspondência","Controle","Consistência","Reconhecimento","Eficiência de uso","Minimalismo","Prevenção de erros"]
 
   const maxLife = 6
 
@@ -54,232 +58,41 @@ const Home: NextPage = () => {
 
   var dayOfWeek = today.getDay();
   var isWeekend = (dayOfWeek === 5) || (dayOfWeek === 6) || (dayOfWeek === 0) || (dayOfWeek === 1); // 6 = Saturday, 0 = Sunday
-  
-  function featuresName(name: string) {
-    switch(name) {
-      case 'visibility':
-        return 'Visibilidade';
-      case 'match':
-        return 'Correspondência';
-      case 'control':
-        return 'Controle';
-      case 'consistence':
-        return 'Consistência';
-      case 'recognition':
-        return 'Reconhecimento';
-      case 'error_prevention':
-        return 'Prevenção de erros';
-      case 'efficiency':
-        return 'Eficiência de uso';
-      default:
-        return 'Minimalismo';
-    }
-  }
-  
-  async function GetPixel(email:any) {
-    await apiPixel.get('/pixel/by-mail/?email=' + email).then(res => {
-      setPixelName(res.data.name)
-      setSquare(res.data.eye === "Quadrado")
-      setColor(res.data.color)
-      setPixelId(res.data.id)
-    }).catch(err => {
-      console.log(err)
-    })
+
+  const token = getCookie('nextauth.token');
+
+  function logoutFunction() {
+    removeCookies('nextauth.token')
+    router.push('/');
   }
 
-  async function GetFeed() {
-    var index = 0;
-    var activeNumber = 0;
-    await apiPixel.get(`pixel/${pixelId}/features`).then(res => {
-
-      setFeed(res.data)
-
-      res.data.map((r: any) => {
-        if (r.active) {
-          index += r.value;
-          activeNumber++
-        }
-        setMedia(index / activeNumber);
-        })
-      }).catch((err: any) => {
-        console.log(err)
-      })
-    
+  useEffect(() => {
+    if (!token) {
+      router.push('/')
+      window.location.reload()
     }
-
-  async function functionFeed() {
-    const token = getCookie('nextauth.token');
-    await apiPixel.post(`pixel/${pixelId}/feed`, {
-        visibility: visibilidade,
-        match: correspondencia,
-        control: controle,
-        consistence: consistencia,
-        recognition: reconhecimento,
-        efficiency: eficiencia,
-        minimalism: minimalismo,
-        error_prevention: prevencao
-      }, {
-      headers: {
-        'X-Access-Token': token as string
-      }
-    }).then(res => {
-      toast.success('Pixel Alimentado com sucesso!')
-      setModalIsOpen(false)
-      GetFeed()
-    }).catch(err => {
-      console.log(err)
-    })
-  }
-
-  async function ableFeature() {
-    const token = getCookie('nextauth.token');
-
-    //id=1
-    await apiPixel.post(`pixel/${pixelId}/feature/1/enable`, {
-      enabled: ableVisibilidade
-    }, {
-      headers: {
-        'X-Access-Token': token as string
-      }
-    }).then(res => {
-      // console.log(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-
-    //id=2
-    await apiPixel.post(`pixel/${pixelId}/feature/2/enable`, {
-      enabled: ableCorrespondencia
-    }, {
-    headers: {
-      'X-Access-Token': token as string
-    }
-    }).then(res => {
-      // console.log(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-
-    //id=3
-    await apiPixel.post(`pixel/${pixelId}/feature/3/enable`, {
-      enabled: ableControle
-    }, {
-    headers: {
-      'X-Access-Token': token as string
-    }
-    }).then(res => {
-      // console.log(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-
-    //id=4
-    await apiPixel.post(`pixel/${pixelId}/feature/4/enable`, {
-      enabled: ableConsistencia
-    }, {
-    headers: {
-      'X-Access-Token': token as string
-    }
-    }).then(res => {
-      // console.log(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-
-    //id=5
-    await apiPixel.post(`pixel/${pixelId}/feature/5/enable`, {
-      enabled: ableReconhecimento
-    }, {
-    headers: {
-      'X-Access-Token': token as string
-    }
-    }).then(res => {
-      // console.log(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-
-    //id=6
-    await apiPixel.post(`pixel/${pixelId}/feature/6/enable`, {
-      enabled: ableEficiencia
-    }, {
-    headers: {
-      'X-Access-Token': token as string
-    }
-    }).then(res => {
-      // console.log(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-
-    //id=7
-    await apiPixel.post(`pixel/${pixelId}/feature/7/enable`, {
-      enabled: ableMinimalismo
-    }, {
-    headers: {
-      'X-Access-Token': token as string
-    }
-    }).then(res => {
-      // console.log(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-
-    //id=8
-    await apiPixel.post(`pixel/${pixelId}/feature/8/enable`, {
-      enabled: ablePrevencao
-    }, {
-    headers: {
-      'X-Access-Token': token as string
-    }
-    }).then(res => {
-      // console.log(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-
-    setModalIsOpenEvaluation(false);
-    window.location.reload();
-  }
-
-  async function getAbled(){
-    await apiPixel.get(`pixel/${pixelId}/features`).then(res => {
-       res.data.map((r: any) => {
-         if(r.id === 1) {
-           setAbleVisibilidade(r.active);
-         } else if(r.id === 2){
-           setAbleCorrespondencia(r.active);
-         } else if (r.id === 3) {
-           setAbleControle(r.active);  
-         }else if (r.id === 4) {
-           setAbleConsistencia(r.active);
-         }else if (r.id === 5) {
-           setAbleReconhecimento(r.active);
-         }else if (r.id === 6) {
-           setAbleEficiencia(r.active);
-         }else if (r.id === 7) {
-           setAbleMinimalismo(r.active);
-         }else if (r.id === 8) {
-           setAblePrevencao(r.active);
-         }
-        })
-        console.log(res)
-      }).catch((err: any) => {
-        console.log(err)
-      })
-  }
+  },[token])
 
   useEffect(() => {
     isWeekend ? setWkend(false) : setWkend(true)
   }, [dayOfWeek])
   
   useEffect(() => {
-    const token = getCookie('nextauth.token');
     const user:any = jwt(token as string);
-    GetPixel(user.email)
+    GetPixel(user.email,setPixelId, setPixelName, setColor, setSquare)
     if (pixelId) {
-      GetFeed()
-      getAbled()   
+      GetFeed(pixelId,setMedia,setFeed)
+      getAbled(
+        pixelId,
+        setAbleVisibilidade,
+        setAbleCorrespondencia,
+        setAbleControle,
+        setAbleConsistencia,
+        setAbleReconhecimento,
+        setAbleEficiencia,
+        setAbleMinimalismo,
+        setAblePrevencao
+      )   
     } 
   }, [pixelId])
   
@@ -316,11 +129,12 @@ const Home: NextPage = () => {
               >
                 Alimente seu Pixel
               </button>
-              <Link href="/">
-                <button className={styles.CancelButton1} >
+              <button
+                className={styles.CancelButton1}
+                onClick={logoutFunction}
+              >
                   Logout
                 </button>
-              </Link>
 
               <button 
                 className={styles.textButton}
@@ -428,7 +242,20 @@ const Home: NextPage = () => {
           <Link href="/pixellife">
             <button
               className={styles.button}
-              onClick={functionFeed}
+              onClick={()=>functionFeed(
+                pixelId,
+                visibilidade,
+                correspondencia,
+                controle,
+                consistencia,
+                reconhecimento,
+                eficiencia,
+                minimalismo,
+                prevencao,
+                setModalIsOpen,
+                setMedia,
+                setFeed
+              )}
             >
               Alimentar
             </button>
@@ -578,7 +405,18 @@ const Home: NextPage = () => {
             <button
               className={styles.button}
               onClick={() => {
-                ableFeature();
+                ableFeature(
+                  pixelId,
+                  ableVisibilidade,
+                  ableCorrespondencia,
+                  ableControle,
+                  ableConsistencia,
+                  ableReconhecimento,
+                  ableEficiencia,
+                  ableMinimalismo,
+                  ablePrevencao,
+                  setModalIsOpenEvaluation
+                );
               }}
             >
               Alterar
@@ -591,4 +429,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default PixelLife

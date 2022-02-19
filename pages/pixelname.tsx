@@ -1,13 +1,30 @@
+import { getCookie } from 'cookies-next'
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { useContext, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useContext, useEffect } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { AppContext } from '../context/contextapi'
+import HaveAPixel from '../Model/haveAPixel'
 import styles from '../styles/PixelName.module.css'
 
-const Home: NextPage = () => {
+const PixelName: NextPage = () => {
 
-    const {pixelName, setPixelName} = useContext(AppContext)
+  const { pixelName, setPixelName } = useContext(AppContext)
+  
+  const token = getCookie('nextauth.token');
+
+  const router = useRouter();
+  
+  useEffect(() => {
+
+    HaveAPixel(token, router);
+
+    if (!token) {
+      router.push('/')
+      window.location.reload()
+    }
+  },[token])
 
   return (
     <div className={styles.container}>
@@ -76,4 +93,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default PixelName
