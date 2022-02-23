@@ -13,6 +13,7 @@ import functionFeed from '../Model/functionFeed'
 import GetFeed from '../Model/getFeed'
 import getAbled from '../Model/getAble'
 import ableFeature from '../Model/ableFeature'
+import GetFeatureId from '../Model/getFeatureId';
 
 
 const PixelLife: NextPage = () => {
@@ -47,6 +48,16 @@ const PixelLife: NextPage = () => {
   const [ableEficiencia, setAbleEficiencia] = useState<boolean>();
   const [ableMinimalismo, setAbleMinimalismo] = useState<boolean>();
   const [ablePrevencao, setAblePrevencao] = useState<boolean>();
+
+  //Feature id
+  const [idVisibilidade, setIdVisibilidade ]= useState<number>();
+  const [idCorrespondencia, setIdCorrespondencia ]= useState<number>();
+  const [idControle, setIdControle] = useState<number>();
+  const [idConsistencia, setIdConsistencia] = useState<number>();
+  const [idReconhecimento, setIdReconhecimento] = useState<number>();
+  const [idEficiencia, setIdEficiencia] = useState<number>();
+  const [idMinimalismo, setIdMinimalismo] = useState<number>();
+  const [idPrevencao, setIdPrevencao] = useState<number>();
 
   const router = useRouter()
 
@@ -92,7 +103,18 @@ const PixelLife: NextPage = () => {
         setAbleEficiencia,
         setAbleMinimalismo,
         setAblePrevencao
-      )   
+      )
+      GetFeatureId(
+        pixelId,
+        setIdVisibilidade,
+        setIdCorrespondencia,
+        setIdControle,
+        setIdConsistencia,
+        setIdReconhecimento,
+        setIdEficiencia,
+        setIdMinimalismo,
+        setIdPrevencao,
+      )
     } 
   }, [pixelId])
   
@@ -415,7 +437,15 @@ const PixelLife: NextPage = () => {
                   ableEficiencia,
                   ableMinimalismo,
                   ablePrevencao,
-                  setModalIsOpenEvaluation
+                  setModalIsOpenEvaluation,
+                  idVisibilidade,
+                  idCorrespondencia,
+                  idControle,
+                  idConsistencia,
+                  idReconhecimento,
+                  idEficiencia,
+                  idMinimalismo,
+                  idPrevencao,
                 );
               }}
             >

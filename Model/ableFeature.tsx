@@ -12,12 +12,20 @@ async function ableFeature(
     ableEficiencia: boolean | undefined,
     ableMinimalismo: boolean | undefined,
     ablePrevencao: boolean | undefined,
-    setModalIsOpenEvaluation: React.Dispatch<React.SetStateAction<boolean>>
+    setModalIsOpenEvaluation: React.Dispatch<React.SetStateAction<boolean>>,
+    idVisibilidade: number | undefined,
+    idCorrespondencia: number | undefined,
+    idControle: number | undefined,
+    idConsistencia: number | undefined,
+    idReconhecimento: number | undefined,
+    idEficiencia: number | undefined,
+    idMinimalismo: number | undefined,
+    idPrevencao: number | undefined,
 ) {
     const token = getCookie('nextauth.token');
 
     //id=1
-    await apiPixel.post(`pixel/${pixelId}/feature/1/enable`, {
+    await apiPixel.post(`pixel/${pixelId}/feature/${idVisibilidade}/enable`, {
       enabled: ableVisibilidade
     }, {
       headers: {
@@ -30,7 +38,7 @@ async function ableFeature(
     })
 
     //id=2
-    await apiPixel.post(`pixel/${pixelId}/feature/2/enable`, {
+    await apiPixel.post(`pixel/${pixelId}/feature/${idCorrespondencia}/enable`, {
       enabled: ableCorrespondencia
     }, {
     headers: {
@@ -43,7 +51,7 @@ async function ableFeature(
     })
 
     //id=3
-    await apiPixel.post(`pixel/${pixelId}/feature/3/enable`, {
+    await apiPixel.post(`pixel/${pixelId}/feature/${idControle}/enable`, {
       enabled: ableControle
     }, {
     headers: {
@@ -56,7 +64,7 @@ async function ableFeature(
     })
 
     //id=4
-    await apiPixel.post(`pixel/${pixelId}/feature/4/enable`, {
+    await apiPixel.post(`pixel/${pixelId}/feature/${idConsistencia}/enable`, {
       enabled: ableConsistencia
     }, {
     headers: {
@@ -69,7 +77,7 @@ async function ableFeature(
     })
 
     //id=5
-    await apiPixel.post(`pixel/${pixelId}/feature/5/enable`, {
+    await apiPixel.post(`pixel/${pixelId}/feature/${idReconhecimento}/enable`, {
       enabled: ableReconhecimento
     }, {
     headers: {
@@ -82,7 +90,7 @@ async function ableFeature(
     })
 
     //id=6
-    await apiPixel.post(`pixel/${pixelId}/feature/6/enable`, {
+    await apiPixel.post(`pixel/${pixelId}/feature/${idEficiencia}/enable`, {
       enabled: ableEficiencia
     }, {
     headers: {
@@ -95,7 +103,7 @@ async function ableFeature(
     })
 
     //id=7
-    await apiPixel.post(`pixel/${pixelId}/feature/7/enable`, {
+    await apiPixel.post(`pixel/${pixelId}/feature/${idMinimalismo}/enable`, {
       enabled: ableMinimalismo
     }, {
     headers: {
@@ -108,7 +116,7 @@ async function ableFeature(
     })
 
     //id=8
-    await apiPixel.post(`pixel/${pixelId}/feature/8/enable`, {
+    await apiPixel.post(`pixel/${pixelId}/feature/${idPrevencao}/enable`, {
       enabled: ablePrevencao
     }, {
     headers: {
