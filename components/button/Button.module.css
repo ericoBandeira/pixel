@@ -1,0 +1,33 @@
+.button{
+    cursor: pointer;
+    font-family: Roboto Mono;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 53px;
+    color: #FFFFFF;
+
+    min-width: 20rem;
+    border-radius: 15px;
+    border: none;
+    transition: 0.4s;
+}
+
+.button:hover{
+    opacity: 0.8;
+}  
+
+.button:disabled{
+    background: gray;
+    cursor: not-allowed;
+}  
+
+.textButton{
+    cursor: pointer;
+    color: black;
+    font-family: Roboto Mono;
+    font-size: 1rem;
+    background: none !important;
+    border: none;
+    text-decoration: underline;
+}

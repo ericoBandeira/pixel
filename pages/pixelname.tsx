@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+import Button from '../components/button'
+import Pixel from '../components/pixel'
 import { AppContext } from '../context/contextapi'
 import HaveAPixel from '../Model/haveAPixel'
 import styles from '../styles/PixelName.module.css'
@@ -49,45 +51,32 @@ const PixelName: NextPage = () => {
                 onChange={(e)=>setPixelName(e.target.value)}
             />
               
-            {(pixelName ==="") ?
-            <button 
-            className={styles.button}
-            onClick={()=>toast.error("Por favor, digite um nome válido")}
+         {(pixelName ==="") ?
+            <Button
+              onClick={()=>toast.error("Por favor, digite um nome válido")}
+              variant="outline"
+              color="primary"
+              mtop="3rem"
             >
-                Próximo passo
-            </button>
-            
+              Próximo passo
+            </Button>
             :
             <Link href="/pixelbody">
-            <button 
-                className={styles.button}
-            >
+              <Button
+                variant="outline"
+                color="primary"
+                mtop="3rem"
+              >
                 Próximo passo
-            </button>
+              </Button>
             </Link>}
             <Toaster/>
-
         </div>
         <div className={styles.pixel}>
-              <div className={styles.pixelBody}>
-                <div>
-                    <div className={styles.pixelEye}>
-                        <div className={styles.pixelPupil}/>
-                    </div>
-                    <div className={styles.pixelEye}>
-                        <div className={styles.pixelPupil}/>
-                    </div>
-                  </div>
-                  <div className={styles.mouth}>
-                    <svg width="117" height="48" viewBox="0 0 117 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="15.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                    <rect x="75.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                    <rect x="89.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                    <rect x="1.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                    <rect x="30.5" y="24.5" width="58" height="22" fill="black" stroke="black" strokeWidth="3"/>
-                    </svg>
-                  </div>
-            </div>
+          <Pixel
+            square={true}
+            media={6}
+          />
         </div>
     </div>
   )

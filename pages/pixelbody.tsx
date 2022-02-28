@@ -10,6 +10,8 @@ import { getCookie } from 'cookies-next';
 import { useRouter } from 'next/router'
 import SetPixel from '../Model/setPixel'
 import HaveAPixel from '../Model/haveAPixel'
+import Button from '../components/button'
+import Pixel from '../components/pixel'
 
 const PixelBody: NextPage = () => {
 
@@ -91,36 +93,22 @@ const PixelBody: NextPage = () => {
               </div>
 
             </div>
-                
-
-              <button
-              className={styles.button}
+               
+            <Button
               onClick={() => { setModalIsOpen(true) }}
-              >
+              variant="outline"
+              color="primary"
+              mtop="5rem"
+            >
                   Finalizar
-            </button>
+            </Button>
           </div>
           <div className={styles.pixel}>
-                <div className={styles.pixelBody} 
-                style={{backgroundColor:color}}>
-                  <div>
-                      <div className={styles.pixelEye} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}>
-                          <div className={styles.pixelPupil} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}/>
-                      </div>
-                      <div className={styles.pixelEye} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}>
-                          <div className={styles.pixelPupil} style={circle?{borderRadius:"50%"}:{borderRadius:"0"}}/>
-                      </div>
-                    </div>
-                    <div className={styles.mouth}>
-                      <svg width="117" height="48" viewBox="0 0 117 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="15.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                      <rect x="75.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                      <rect x="89.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                      <rect x="1.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                      <rect x="30.5" y="24.5" width="58" height="22" fill="black" stroke="black" strokeWidth="3"/>
-                      </svg>
-                    </div>
-              </div>
+              <Pixel
+                color={color}
+                square={square}
+                media={6}
+              />
           </div>
       </div>
       <Modal 
@@ -131,18 +119,23 @@ const PixelBody: NextPage = () => {
           O seu pixel não poderá ter suas características alteradas, <br/> tem certeza que deseja finalizar?
         </span>
         <div className={styles.buttonDiv}>
-          <button
-            className={styles.CancelButton}
+          <Button
             onClick={() => { setModalIsOpen(false) }}
-            >
-                Cancelar
-            </button>
-            <button
-              className={styles.button}
-              onClick={()=>SetPixel(pixelName, square, color, router)}
-            >
-              Finalizar
-            </button>
+            variant="outline"
+            color="warning"
+            mtop="3rem"
+          >
+              Cancelar
+          </Button>
+        
+          <Button
+            onClick={()=>SetPixel(pixelName, square, color, router)}
+            variant="outline"
+            color="primary"
+            mtop="3rem"
+          >
+                Finalizar
+          </Button>
         </div>
       </Modal>
       <Toaster />
