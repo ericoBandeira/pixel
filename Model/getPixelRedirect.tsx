@@ -8,7 +8,7 @@ async function GetPixelRedirect(
   router: NextRouter
 ) {
 
-    await apiPixel.get('/pixel/by-mail/?email=' + username).then(res => {
+    await apiPixel.get('/pixel/by-user/?registration=' + username).then(res => {
       console.log(res)
       router.push('/pixellife')
     }).catch(err => {

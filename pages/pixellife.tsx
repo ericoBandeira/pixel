@@ -93,7 +93,7 @@ const PixelLife: NextPage = () => {
   
   useEffect(() => {
     const user:any = jwt(token as string);
-    GetPixel(user.email,setPixelId, setPixelName, setColor, setSquare)
+    GetPixel(user.registration,setPixelId, setPixelName, setColor, setSquare)
     if (pixelId) {
       GetFeed(pixelId,setMedia,setFeed)
       getAbled(

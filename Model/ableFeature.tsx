@@ -31,9 +31,9 @@ async function ableFeature(
       headers: {
         'X-Access-Token': token as string
       }
-    }).then(res => {
+    }).then((res: any) => {
       // console.log(res.data)
-    }).catch(err => {
+    }).catch((err: any) => {
       console.log(err)
     })
 
@@ -44,9 +44,9 @@ async function ableFeature(
     headers: {
       'X-Access-Token': token as string
     }
-    }).then(res => {
+    }).then((res: any) => {
       // console.log(res.data)
-    }).catch(err => {
+    }).catch((err: any) => {
       console.log(err)
     })
 
@@ -57,9 +57,9 @@ async function ableFeature(
     headers: {
       'X-Access-Token': token as string
     }
-    }).then(res => {
+    }).then((res: any) => {
       // console.log(res.data)
-    }).catch(err => {
+    }).catch((err: any) => {
       console.log(err)
     })
 
@@ -70,9 +70,9 @@ async function ableFeature(
     headers: {
       'X-Access-Token': token as string
     }
-    }).then(res => {
+    }).then((res: any) => {
       // console.log(res.data)
-    }).catch(err => {
+    }).catch((err: any) => {
       console.log(err)
     })
 
@@ -83,9 +83,9 @@ async function ableFeature(
     headers: {
       'X-Access-Token': token as string
     }
-    }).then(res => {
+    }).then((res: any) => {
       // console.log(res.data)
-    }).catch(err => {
+    }).catch((err: any) => {
       console.log(err)
     })
 
@@ -96,9 +96,9 @@ async function ableFeature(
     headers: {
       'X-Access-Token': token as string
     }
-    }).then(res => {
+    }).then((res: any) => {
       // console.log(res.data)
-    }).catch(err => {
+    }).catch((err: any) => {
       console.log(err)
     })
 
@@ -109,9 +109,9 @@ async function ableFeature(
     headers: {
       'X-Access-Token': token as string
     }
-    }).then(res => {
+    }).then((res: any) => {
       // console.log(res.data)
-    }).catch(err => {
+    }).catch((err: any) => {
       console.log(err)
     })
 
@@ -122,9 +122,9 @@ async function ableFeature(
     headers: {
       'X-Access-Token': token as string
     }
-    }).then(res => {
+    }).then((res: any) => {
       // console.log(res.data)
-    }).catch(err => {
+    }).catch((err: any) => {
       console.log(err)
     })
 

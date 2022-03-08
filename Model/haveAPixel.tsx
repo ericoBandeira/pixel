@@ -8,8 +8,8 @@ async function HaveAPixel(
     router: NextRouter
   ) {
     const user:any = jwt(token as string);
-    
-    await apiPixel.get('/pixel/by-mail/?email=' + user.email).then(res => {
+    console.log(user)
+  await apiPixel.get('/pixel/by-user/?registration=' + user.registration).then(res => {
       router.push('/pixellife')
     }).catch(err => {
       console.log(err)
