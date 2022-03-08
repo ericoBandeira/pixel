@@ -1,0 +1,38 @@
+
+.pixelBody{
+    background: #00F3F3;
+    border: 3px solid #000000;
+    box-sizing: border-box;
+    width: 22rem;
+    height: 22rem;
+}
+.pixelBody > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.pixelEye{
+    margin-top: 4rem;
+    background: #FFF;
+    border: 3px solid #000000;
+    box-sizing: border-box;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.pixelPupil{
+    background: #000000;
+    border: 3px solid #000000;
+    box-sizing: border-box;
+    width: 2em;
+    height: 2em;
+}
+
+.mouth{
+    margin-top: 3rem;
+}

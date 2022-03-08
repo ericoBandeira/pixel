@@ -11,7 +11,7 @@ async function loginFunction(
 ) {
     console.log('teste1')
      await apiPixel.post('/login',{
-      email: username,
+      registration: username,
       password: password
      }).then(res => {
 

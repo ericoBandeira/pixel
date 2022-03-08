@@ -8,7 +8,7 @@ async function GetPixel(
     setColor: React.Dispatch<React.SetStateAction<string>>,
     setSquare: React.Dispatch<React.SetStateAction<boolean>>
 ) {
-    await apiPixel.get('/pixel/by-mail/?email=' + email).then(res => {
+    await apiPixel.get('/pixel/by-user/?registration=' + email).then(res => {
       setPixelName(res.data.name)
       setSquare(res.data.eye === "Quadrado")
       setColor(res.data.color)

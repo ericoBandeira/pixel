@@ -14,6 +14,9 @@ import GetFeed from '../Model/getFeed'
 import getAbled from '../Model/getAble'
 import ableFeature from '../Model/ableFeature'
 import GetFeatureId from '../Model/getFeatureId';
+import Button from '../components/button';
+import Pixel from '../components/pixel';
+import Star from '../components/star';
 
 
 const PixelLife: NextPage = () => {
@@ -90,7 +93,7 @@ const PixelLife: NextPage = () => {
   
   useEffect(() => {
     const user:any = jwt(token as string);
-    GetPixel(user.email,setPixelId, setPixelName, setColor, setSquare)
+    GetPixel(user.registration,setPixelId, setPixelName, setColor, setSquare)
     if (pixelId) {
       GetFeed(pixelId,setMedia,setFeed)
       getAbled(
@@ -123,81 +126,61 @@ const PixelLife: NextPage = () => {
     <>
       <div className={styles.container}>
           <div className={styles.data}>
-            
               <div className={styles.inputTitle}>
                   Seu Pixel: {pixelName}
               </div>
               {feed.map((res: any) =>
                   res.active &&
-                  <>
-                    <div className={styles.inputTitle1} key={res.id}>
-                      {featuresName(res.name)}:
-                    </div>
-                    <div className={styles.stars}>
-                    {Array.from(Array(res.value), () => {
-                        return <div className={styles.star} style={{backgroundColor: "yellow"}}/>
-                    })}
-                    {Array.from(Array(maxLife-res.value), () => {
-                      return <div className={styles.star} style={{backgroundColor: "gray"}}/>
-                    })}
-                    </div>
-                </>
+                  <Star
+                    id={res.id}
+                    value={res.value}
+                    maxLife={maxLife}
+                  >
+                    {featuresName(res.name)}
+                  </Star>
               )}
           
-              <button
-                className={styles.button1}
-                onClick={() => { setModalIsOpen(true) }}
+              <Button
+                onClick={() => {setModalIsOpen(true)}}
+                variant="outline"
                 // disabled={wkend}
+                color="primary"
+                mtop="2rem"
               >
                 Alimente seu Pixel
-              </button>
-              <button
-                className={styles.CancelButton1}
+              </Button>
+          
+              <Button
                 onClick={logoutFunction}
+                variant="outline"
+                color="warning"
+                mtop="1rem"
               >
-                  Logout
-                </button>
+                Logout
+              </Button>
 
-              <button 
-                className={styles.textButton}
+              <Button
                 onClick={() => { setModalIsOpenPixel(true) }}
+                variant="text"
+                mtop="0.5rem"
               >
                 Acompanhe o Pixel da sua equipe
-              </button>
-              
-              <button 
-                className={styles.textButton}
+              </Button>
+
+              <Button
                 onClick={() => { setModalIsOpenEvaluation(true) }}
+                variant="text"
+                mtop="0.5rem"
               >
                 Edite os campos de avaliação
-              </button>
+              </Button>
           </div>
           <div className={styles.pixel}>
-              <div className={styles.pixelBody} style={{ backgroundColor: color }}>
-                <div>
-                  <div className={styles.pixelEye} style={!square?{borderRadius:"50%"}:{borderRadius:"0"}}>
-                      <div className={styles.pixelPupil} style={!square?{borderRadius:"50%"}:{borderRadius:"0"}}/>
-                  </div>
-                  <div className={styles.pixelEye} style={!square?{borderRadius:"50%"}:{borderRadius:"0"}}>
-                      <div className={styles.pixelPupil} style={!square?{borderRadius:"50%"}:{borderRadius:"0"}}/>
-                  </div>
-                </div>
-                {media === 3 ?
-                  <div className={styles.mouth}>
-                    <svg width="82" height="25" viewBox="0 0 82 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1.5" y="1.5" width="79" height="22" fill="black" stroke="black" strokeWidth="3"/>
-                    </svg>
-                  </div>
-                : <div className={styles.mouth} style={media < 3 ? { transform: "rotate(180deg)" } : {}}>
-                    <svg width="117" height="48" viewBox="0 0 117 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="15.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                    <rect x="75.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                    <rect x="89.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                    <rect x="1.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                    <rect x="30.5" y="24.5" width="58" height="22" fill="black" stroke="black" strokeWidth="3"/>
-                    </svg>
-                  </div>}
-              </div>
+          <Pixel
+            color={color}
+            square={square}
+            media={media}
+          />
           </div>
       </div>
      <Modal
@@ -255,32 +238,36 @@ const PixelLife: NextPage = () => {
           <input type="range" value={ prevencao } min="1" max={maxLife} onChange={(e)=>setPrevencao(Number(e.target.value))}/>
         </label>}
       <div className={styles.buttonDiv}>
-        <button
-          className={styles.CancelButton}
+        <Button
+          variant="outline"
+          color="warning"
           onClick={() => { setModalIsOpen(false) }}
+          mtop="2rem"
           >
               Cancelar
-          </button>
+          </Button>
           <Link href="/pixellife">
-            <button
-              className={styles.button}
-              onClick={()=>functionFeed(
-                pixelId,
-                visibilidade,
-                correspondencia,
-                controle,
-                consistencia,
-                reconhecimento,
-                eficiencia,
-                minimalismo,
-                prevencao,
-                setModalIsOpen,
-                setMedia,
-                setFeed
-              )}
-            >
-              Alimentar
-            </button>
+          <Button
+            variant="outline"
+            color="primary"
+            onClick={()=>functionFeed(
+              pixelId,
+              visibilidade,
+              correspondencia,
+              controle,
+              consistencia,
+              reconhecimento,
+              eficiencia,
+              minimalismo,
+              prevencao,
+              setModalIsOpen,
+              setMedia,
+              setFeed
+            )}
+            mtop="2rem"
+          >
+            Alimentar
+          </Button>
           </Link>
         </div>
       </Modal>
@@ -290,38 +277,19 @@ const PixelLife: NextPage = () => {
         className={styles.modal}
       >
         <div className={styles.pixelBody} style={{ backgroundColor: "#00F3F3", marginTop:"3rem"}}>
-            <div>
-                <div className={styles.pixelEye} >
-                    <div className={styles.pixelPupil} />
-                </div>
-                <div className={styles.pixelEye}>
-                    <div className={styles.pixelPupil}/>
-                </div>
-              </div>
-              {media === 3 ?
-              <div className={styles.mouth}>
-                <svg width="82" height="25" viewBox="0 0 82 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1.5" y="1.5" width="79" height="22" fill="black" stroke="black" strokeWidth="3"/>
-                </svg>
-              </div>
-              : <div className={styles.mouth} style={media < 3 ? { transform: "rotate(180deg)" } : {}}>
-                <svg width="117" height="48" viewBox="0 0 117 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="15.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                <rect x="75.5" y="15.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                <rect x="89.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                <rect x="1.5" y="1.5" width="26" height="25" fill="black" stroke="black" strokeWidth="3"/>
-                <rect x="30.5" y="24.5" width="58" height="22" fill="black" stroke="black" strokeWidth="3"/>
-                </svg>
-              </div>}
+           <Pixel/>
         </div>
       
-        <button
-          className={styles.button}
-          onClick={() => { setModalIsOpenPixel(false) }}
-          style={{marginBottom: "3rem"}}
+        <div className={styles.pixelBody} style={{paddingBottom:"2rem"}}>
+          <Button
+            variant="outline"
+            color="primary"
+            onClick={() => { setModalIsOpenPixel(false) }}
+            mtop="2rem"
           >
               Voltar
-          </button>
+          </Button>
+        </div>
       </Modal>
       
 
@@ -415,17 +383,20 @@ const PixelLife: NextPage = () => {
         </label>
         
       <div className={styles.buttonDiv}>
-        <button
-          className={styles.CancelButton}
+          <Button
+            variant="outline"
+            color="warning"
             onClick={() => {
               setModalIsOpenEvaluation(false);
             }}
+            mtop="2rem"
           >
               Cancelar
-          </button>
+          </Button>
           <Link href="/pixellife">
-            <button
-              className={styles.button}
+            <Button
+              variant="outline"
+              color="primary"
               onClick={() => {
                 ableFeature(
                   pixelId,
@@ -448,9 +419,10 @@ const PixelLife: NextPage = () => {
                   idPrevencao,
                 );
               }}
+              mtop="2rem"
             >
               Alterar
-            </button>
+            </Button>
           </Link>
         </div>
       </Modal>
