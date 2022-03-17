@@ -18,8 +18,9 @@
 }  
 
 .button:disabled{
-    background: gray;
+    background-color: gray !important;
     cursor: not-allowed;
+    opacity: 1 !important;
 }  
 
 .textButton{
