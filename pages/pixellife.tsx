@@ -264,7 +264,8 @@ const PixelLife: NextPage = () => {
               setMedia,
               setFeed
             )}
-            mtop="2rem"
+              mtop="2rem"
+              disabled = {wkend}
           >
             Alimentar
           </Button>
