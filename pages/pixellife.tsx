@@ -143,7 +143,7 @@ const PixelLife: NextPage = () => {
               <Button
                 onClick={() => {setModalIsOpen(true)}}
                 variant="outline"
-                // disabled={wkend}
+                disabled={wkend}
                 color="primary"
                 mtop="2rem"
               >
